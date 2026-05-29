@@ -1,0 +1,9 @@
+{
+  "short_name": "NZ Trip",
+  "name": "NZ 要幹嘛 🇳🇿",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#E7E6ED",
+  "background_color": "#E7E6ED"
+}
