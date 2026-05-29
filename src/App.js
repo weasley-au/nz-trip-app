@@ -315,24 +315,20 @@ function TripPage({ checked, onToggle }) {
             <div style={{ borderRadius: 20, overflow: "hidden", background: S.dark }}
               onClick={() => setExpanded(e => ({ ...e, [day.id]: !e[day.id] }))}>
               <div style={{ padding: "18px 22px 20px", cursor: "pointer" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-                  <div>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35, marginBottom: 6 }}>{day.dayNum} · {day.date}</div>
-                    <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
-                    <div style={{ fontSize: 13, color: "#F0F0F0", opacity: 0.4 }}>{day.meta}</div>
-                    {day.accom && (
-                      <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
-                        onClick={e => e.stopPropagation()}
-                        style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, fontSize: 11, fontWeight: 500, color: "#F0F0F0", opacity: 0.45, textDecoration: "none", background: "rgba(240,240,240,0.1)", borderRadius: 20, padding: "3px 10px" }}>
-                        📍 {day.accom}
-                      </a>
-                    )}
+                <div style={{ marginBottom: 14 }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35 }}>{dayDone}/{day.activities.length} done</div>
                   </div>
-                  <div style={{ textAlign: "right" }}>
-                    <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1 }}>{day.driveVal}</div>
-                    <div style={{ fontSize: 10, fontWeight: 700, color: "#F0F0F0", opacity: 0.3, letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 }}>{day.driveUnit}</div>
-                    <div style={{ fontSize: 12, color: "#F0F0F0", opacity: 0.4, marginTop: 8 }}>{dayDone}/{day.activities.length} done</div>
-                  </div>
+                  <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
+                  <div style={{ fontSize: 13, color: "#F0F0F0", opacity: 0.4 }}>{day.meta}</div>
+                  {day.accom && (
+                    <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
+                      onClick={e => e.stopPropagation()}
+                      style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, fontSize: 11, fontWeight: 500, color: "#F0F0F0", opacity: 0.45, textDecoration: "none", background: "rgba(240,240,240,0.1)", borderRadius: 20, padding: "3px 10px" }}>
+                      📍 {day.accom}
+                    </a>
+                  )}
                 </div>
                 <div style={{ display: "flex", gap: 3 }}>
                   {Array.from({ length: day.dotsTotal }).map((_, i) => (
@@ -427,7 +423,7 @@ function TodoPage({ checked, onToggle }) {
                 <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(240,240,240,0.15)" }}>
                   {group.items.map((item, idx) => (
                     <div key={item.id} style={{ borderBottom: idx < group.items.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                      <ActivityRow id={item.id} time={item.cat} name={item.name} badge={item.badge} badgeType={item.badgeType} checked={!!checked[item.id]} onToggle={() => onToggle(item.id)} />
+                      <ActivityRow id={item.id} time={item.cat} name={item.name} badge="" badgeType={item.badgeType} checked={!!checked[item.id]} onToggle={() => onToggle(item.id)} />
                     </div>
                   ))}
                   {addingTo === group.id ? (
@@ -587,7 +583,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
       <div style={{ position: "relative", marginBottom: 12 }}>
         <div style={{ background: S.card, borderRadius: 20, overflow: "hidden" }}>
           <div style={{ padding: "20px 22px" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.3, marginBottom: 14 }}>Jun 17–23</div>
+            
             <div style={{ marginBottom: 18 }}>
                 <div style={{ fontSize: 13, color: S.text, opacity: 0.4, marginBottom: 5 }}>Total spent</div>
                 <div style={{ fontSize: 38, fontWeight: 800, color: S.text, letterSpacing: -2, lineHeight: 1 }}>
