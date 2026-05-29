@@ -516,8 +516,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
   const [form, setForm] = useState({ name: "", cat: "Activity", amount: "", paidBy: "Weasley", note: "" });
 
   const total = expenses.reduce((s, e) => s + Number(e.amount), 0);
-  const perPerson = Math.round(total / 4);
-  const remaining = budget - total;
+    const remaining = budget - total;
   const spentPct = Math.min(100, Math.round((total / budget) * 100));
   const catTotals = {};
   EXPENSE_CATS.forEach(c => { catTotals[c] = 0; });
