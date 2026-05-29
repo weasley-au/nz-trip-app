@@ -6,113 +6,113 @@ const TABS = ["Trip", "To-do", "Budget"];
 const TRIP_DAYS = [
   { id: "day1", accom: "14 Hall Street, Queenstown", accomUrl: "https://maps.google.com/?q=14+Hall+Street+Queenstown+New+Zealand", dayNum: "Day 1", date: "Wed 17 Jun", name: "Arrival", meta: "Queenstown", driveVal: "3:40", driveUnit: "PM Land", dotsTotal: 5, dotsDone: 0,
     activities: [
-      { id: "d1a1", time: "10:10 AM", name: "Depart Brisbane — VA 119", badge: "Flight", badgeType: "purple", defaultDone: false },
-      { id: "d1a2", time: "3:40 PM", name: "Arrive Queenstown Airport (ZQN)", badge: "Land", badgeType: "done", defaultDone: false },
-      { id: "d1a3", time: "4:00 PM", name: "Rental car pickup at airport", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "d1a4", time: "5:30 PM", name: "Check in — 14 Hall Street, Queenstown", badge: "Booked", badgeType: "done", defaultDone: false },
-      { id: "d1a5", time: "6:30 PM", name: "Dinner at Fergburger", badge: "$15–20", badgeType: "opt", defaultDone: false },
-      { id: "d1a6", time: "8:00 PM", name: "Grocery shopping — New World Queenstown", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "d1a7", time: "9:00 PM", name: "Optional: Below Zero Ice Bar", badge: "$25 pp", badgeType: "opt", defaultDone: false },
+      { id: "d1a1", time: "10:10 AM", name: "Depart Brisbane — VA 119", location: "Brisbane Airport (BNE), Airport Drive, Brisbane", badge: "Flight", badgeType: "purple", defaultDone: false },
+      { id: "d1a2", time: "3:40 PM", name: "Arrive Queenstown Airport (ZQN)", location: "Queenstown Airport, Queens Drive, Frankton", badge: "Land", badgeType: "done", defaultDone: false },
+      { id: "d1a3", time: "4:00 PM", name: "Rental car pickup at airport", location: "Queenstown Airport Terminal, Frankton", badge: "Essential", badgeType: "warn", defaultDone: false },
+      { id: "d1a4", time: "5:30 PM", name: "Check in — 14 Hall Street, Queenstown", location: "14 Hall Street, Queenstown", badge: "Booked", badgeType: "done", defaultDone: false },
+      { id: "d1a5", time: "6:30 PM", name: "Dinner at Fergburger", location: "42 Shotover Street, Queenstown", badge: "$15–20", badgeType: "opt", defaultDone: false },
+      { id: "d1a6", time: "8:00 PM", name: "Grocery shopping — New World Queenstown", location: "New World Queenstown, Gorge Road", badge: "Essential", badgeType: "warn", defaultDone: false },
+      { id: "d1a7", time: "9:00 PM", name: "Optional: Below Zero Ice Bar", location: "Steamer Wharf, Beach Street, Queenstown", badge: "$25 pp", badgeType: "opt", defaultDone: false },
     ],
   },
   { id: "day2", accom: "14 Hall Street, Wānaka", accomUrl: "https://maps.google.com/?q=14+Hall+Street+Wanaka+New+Zealand", dayNum: "Day 2", date: "Thu 18 Jun", name: "Arrowtown & Wānaka", meta: "82 km · 1h 19 drive", driveVal: "1h 19", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Crown Range — 13% grade, chains likely required",
     preview: ["Arrowtown", "Crown Range", "Cardrona Hotel", "#ThatWānakaTree", "Lake Walk"],
     activities: [
-      { id: "d2a1", time: "7:00 AM", name: "Breakfast at accommodation", badge: "Groceries", badgeType: "opt", defaultDone: false },
-      { id: "d2a2", time: "8:00 AM", name: "Drive to Arrowtown (12.5 km)", badge: "11 min", badgeType: "opt", defaultDone: false },
-      { id: "d2a3", time: "8:15 AM", name: "Explore Buckingham Street", badge: "Free", badgeType: "done", defaultDone: false },
-      { id: "d2a4", time: "9:30 AM", name: "Lakes District Museum", badge: "$10 pp", badgeType: "opt", defaultDone: false },
-      { id: "d2a5", time: "10:30 AM", name: "Chinese Settlement ruins", badge: "Free", badgeType: "done", defaultDone: false },
-      { id: "d2a6", time: "12:00 PM", name: "Drive Crown Range → Wānaka", badge: "Scenic", badgeType: "purple", defaultDone: false },
-      { id: "d2a7", time: "1:30 PM", name: "Cardrona Hotel photo stop (est. 1863)", badge: "Photo", badgeType: "opt", defaultDone: false },
-      { id: "d2a8", time: "2:00 PM", name: "Check in — 14 Hall Street, Wānaka", badge: "Booked", badgeType: "done", defaultDone: false },
-      { id: "d2a9", time: "3:00 PM", name: "Photo at #ThatWānakaTree", badge: "Iconic", badgeType: "purple", defaultDone: false },
-      { id: "d2a10", time: "3:30 PM", name: "Lake Wānaka boardwalk", badge: "Free", badgeType: "done", defaultDone: false },
-      { id: "d2a11", time: "5:30 PM", name: "Dinner in Wānaka", badge: "$18–48", badgeType: "opt", defaultDone: false },
+      { id: "d2a1", time: "7:00 AM", name: "Breakfast at accommodation", location: "14 Hall Street, Queenstown", badge: "Groceries", badgeType: "opt", defaultDone: false },
+      { id: "d2a2", time: "8:00 AM", name: "Drive to Arrowtown (12.5 km)", location: "Arrowtown, Otago, New Zealand", badge: "11 min", badgeType: "opt", defaultDone: false },
+      { id: "d2a3", time: "8:15 AM", name: "Explore Buckingham Street", location: "Buckingham Street, Arrowtown", badge: "Free", badgeType: "done", defaultDone: false },
+      { id: "d2a4", time: "9:30 AM", name: "Lakes District Museum", location: "49 Buckingham Street, Arrowtown", badge: "$10 pp", badgeType: "opt", defaultDone: false },
+      { id: "d2a5", time: "10:30 AM", name: "Chinese Settlement ruins", location: "Chinese Settlement, Arrowtown", badge: "Free", badgeType: "done", defaultDone: false },
+      { id: "d2a6", time: "12:00 PM", name: "Drive Crown Range → Wānaka", location: "Crown Range Road, Otago, New Zealand", badge: "Scenic", badgeType: "purple", defaultDone: false },
+      { id: "d2a7", time: "1:30 PM", name: "Cardrona Hotel photo stop (est. 1863)", location: "Cardrona Hotel, Crown Range Road, Cardrona", badge: "Photo", badgeType: "opt", defaultDone: false },
+      { id: "d2a8", time: "2:00 PM", name: "Check in — 14 Hall Street, Wānaka", location: "14 Hall Street, Wānaka", badge: "Booked", badgeType: "done", defaultDone: false },
+      { id: "d2a9", time: "3:00 PM", name: "Photo at #ThatWānakaTree", location: "That Wānaka Tree, Beacon Point Road, Wānaka", badge: "Iconic", badgeType: "purple", defaultDone: false },
+      { id: "d2a10", time: "3:30 PM", name: "Lake Wānaka boardwalk", location: "Lakefront Road, Wānaka", badge: "Free", badgeType: "done", defaultDone: false },
+      { id: "d2a11", time: "5:30 PM", name: "Dinner in Wānaka", location: "Ardmore Street, Wānaka", badge: "$18–48", badgeType: "opt", defaultDone: false },
     ],
   },
   { id: "day3", accom: "13 Coulson Lane, Lake Tekapo", accomUrl: "https://maps.google.com/?q=13+Coulson+Lane+Lake+Tekapo+New+Zealand", dayNum: "Day 3", date: "Fri 19 Jun", name: "Lake Tekapo", meta: "258 km · 3h+ drive", driveVal: "3h+", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Lindis Pass — chains likely required (971m elevation)",
     preview: ["Lindis Pass", "Lake Pukaki", "Church of Good Shepherd", "Kohan Lunch", "Stargazing ⭐"],
     activities: [
-      { id: "d3a1", time: "7:00 AM", name: "Breakfast + pack lunch sandwiches", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "d3a2", time: "8:00 AM", name: "Depart Wānaka — SH6 → SH8", badge: "Early", badgeType: "warn", defaultDone: false },
-      { id: "d3a3", time: "9:00 AM", name: "Cromwell stop — fuel + fruit", badge: "15 min", badgeType: "opt", defaultDone: false },
-      { id: "d3a4", time: "10:00 AM", name: "Church of the Good Shepherd, Lake Tekapo", badge: "Iconic", badgeType: "purple", defaultDone: false },
-      { id: "d3a5", time: "10:30 AM", name: "Lake Tekapo waterfront walk", badge: "Free", badgeType: "done", defaultDone: false },
-      { id: "d3a6", time: "12:30 PM", name: "Lunch at Kohan Restaurant, Lake Pukaki", badge: "$24–38", badgeType: "opt", defaultDone: false },
-      { id: "d3a7", time: "1:30 PM", name: "Lake Pukaki viewpoint", badge: "Turquoise!", badgeType: "purple", defaultDone: false },
-      { id: "d3a8", time: "3:30 PM", name: "Check in — 13 Coulson Lane, Lake Tekapo", badge: "Booked", badgeType: "done", defaultDone: false },
-      { id: "d3a9", time: "4:00 PM", name: "Tekapo Springs Hot Pools", badge: "Recommended", badgeType: "purple", defaultDone: false },
-      { id: "d3a10", time: "7:00 PM", name: "Dinner in Lake Tekapo", badge: "$22–38", badgeType: "opt", defaultDone: false },
-      { id: "d3a11", time: "8:30 PM", name: "Stargazing — Dark Sky Reserve ⭐", badge: "Free / $129", badgeType: "done", defaultDone: false },
+      { id: "d3a1", time: "7:00 AM", name: "Breakfast + pack lunch sandwiches", location: "14 Hall Street, Wānaka", badge: "Essential", badgeType: "warn", defaultDone: false },
+      { id: "d3a2", time: "8:00 AM", name: "Depart Wānaka — SH6 → SH8", location: "SH6, Wānaka to Cromwell, New Zealand", badge: "Early", badgeType: "warn", defaultDone: false },
+      { id: "d3a3", time: "9:00 AM", name: "Cromwell stop — fuel + fruit", location: "The Mall, Cromwell, Otago", badge: "15 min", badgeType: "opt", defaultDone: false },
+      { id: "d3a4", time: "10:00 AM", name: "Church of the Good Shepherd, Lake Tekapo", location: "Church of the Good Shepherd, Lake Tekapo", badge: "Iconic", badgeType: "purple", defaultDone: false },
+      { id: "d3a5", time: "10:30 AM", name: "Lake Tekapo waterfront walk", location: "Lake Tekapo Village, Mackenzie District", badge: "Free", badgeType: "done", defaultDone: false },
+      { id: "d3a6", time: "12:30 PM", name: "Lunch at Kohan Restaurant, Lake Pukaki", location: "Kohan Restaurant, SH8, Twizel", badge: "$24–38", badgeType: "opt", defaultDone: false },
+      { id: "d3a7", time: "1:30 PM", name: "Lake Pukaki viewpoint", location: "Lake Pukaki Viewpoint, SH8, Twizel", badge: "Turquoise!", badgeType: "purple", defaultDone: false },
+      { id: "d3a8", time: "3:30 PM", name: "Check in — 13 Coulson Lane, Lake Tekapo", location: "13 Coulson Lane, Lake Tekapo", badge: "Booked", badgeType: "done", defaultDone: false },
+      { id: "d3a9", time: "4:00 PM", name: "Tekapo Springs Hot Pools", location: "6 Lakeside Drive, Lake Tekapo", badge: "Recommended", badgeType: "purple", defaultDone: false },
+      { id: "d3a10", time: "7:00 PM", name: "Dinner in Lake Tekapo", location: "SH8, Lake Tekapo Village", badge: "$22–38", badgeType: "opt", defaultDone: false },
+      { id: "d3a11", time: "8:30 PM", name: "Stargazing — Dark Sky Reserve ⭐", location: "Church of the Good Shepherd, Lake Tekapo", badge: "Free / $129", badgeType: "done", defaultDone: false },
     ],
   },
   { id: "day4", accom: "13 Coulson Lane, Lake Tekapo", accomUrl: "https://maps.google.com/?q=13+Coulson+Lane+Lake+Tekapo+New+Zealand", dayNum: "Day 4", date: "Sat 20 Jun", name: "Glacier Hike", meta: "Mt Cook · 62 km from Tekapo", driveVal: "6:30", driveUnit: "AM Wake",
     dotsTotal: 5, dotsDone: 0, warn: "SH80 to Mt Cook — chains required. Leave 7 AM sharp",
     activities: [
-      { id: "d4a1", time: "6:30 AM", name: "Wake up — NON-NEGOTIABLE ⏰", badge: "Alarm", badgeType: "warn", defaultDone: false },
-      { id: "d4a2", time: "7:00 AM", name: "Depart Lake Tekapo → Mt Cook", badge: "On time!", badgeType: "warn", defaultDone: false },
-      { id: "d4a3", time: "8:20 AM", name: "Arrive Mt Cook Village", badge: "62.5 km", badgeType: "opt", defaultDone: false },
-      { id: "d4a4", time: "8:45 AM", name: "Safety briefing + gear fitting", badge: "Booked", badgeType: "done", defaultDone: false },
-      { id: "d4a5", time: "9:00 AM", name: "Helicopter flight over Tasman Glacier", badge: "Spectacular", badgeType: "purple", defaultDone: false },
-      { id: "d4a6", time: "9:15 AM", name: "Glacier hike on Tasman Glacier ⛏️", badge: "3.5 hrs", badgeType: "purple", defaultDone: false },
-      { id: "d4a7", time: "12:45 PM", name: "Helicopter return to village", badge: "Done!", badgeType: "done", defaultDone: false },
-      { id: "d4a8", time: "1:00 PM", name: "Lunch — Old Mountaineers' Cafe or packed", badge: "$22–35", badgeType: "opt", defaultDone: false },
-      { id: "d4a9", time: "2:00 PM", name: "Optional: Hooker Valley Track (10 km)", badge: "3 hrs", badgeType: "opt", defaultDone: false },
-      { id: "d4a10", time: "4:30 PM", name: "Drive back to Lake Tekapo", badge: "1h 20", badgeType: "opt", defaultDone: false },
-      { id: "d4a11", time: "6:30 PM", name: "Dinner — Mackenzie's or Kohan", badge: "$22–38", badgeType: "opt", defaultDone: false },
+      { id: "d4a1", time: "6:30 AM", name: "Wake up — NON-NEGOTIABLE ⏰", location: "13 Coulson Lane, Lake Tekapo", badge: "Alarm", badgeType: "warn", defaultDone: false },
+      { id: "d4a2", time: "7:00 AM", name: "Depart Lake Tekapo → Mt Cook", location: "SH8 to SH80, Lake Tekapo to Mt Cook", badge: "On time!", badgeType: "warn", defaultDone: false },
+      { id: "d4a3", time: "8:20 AM", name: "Arrive Mt Cook Village", location: "Mt Cook Village, Aoraki/Mount Cook", badge: "62.5 km", badgeType: "opt", defaultDone: false },
+      { id: "d4a4", time: "8:45 AM", name: "Safety briefing + gear fitting", location: "The Hermitage Hotel, Mt Cook Village", badge: "Booked", badgeType: "done", defaultDone: false },
+      { id: "d4a5", time: "9:00 AM", name: "Helicopter flight over Tasman Glacier", location: "The Helicopter Line, Mt Cook Village", badge: "Spectacular", badgeType: "purple", defaultDone: false },
+      { id: "d4a6", time: "9:15 AM", name: "Glacier hike on Tasman Glacier ⛏️", location: "Tasman Glacier, Aoraki/Mount Cook National Park", badge: "3.5 hrs", badgeType: "purple", defaultDone: false },
+      { id: "d4a7", time: "12:45 PM", name: "Helicopter return to village", location: "The Helicopter Line, Mt Cook Village", badge: "Done!", badgeType: "done", defaultDone: false },
+      { id: "d4a8", time: "1:00 PM", name: "Lunch — Old Mountaineers' Cafe or packed", location: "Old Mountaineers Cafe, Mt Cook Village", badge: "$22–35", badgeType: "opt", defaultDone: false },
+      { id: "d4a9", time: "2:00 PM", name: "Optional: Hooker Valley Track (10 km)", location: "Hooker Valley Track, Aoraki/Mount Cook", badge: "3 hrs", badgeType: "opt", defaultDone: false },
+      { id: "d4a10", time: "4:30 PM", name: "Drive back to Lake Tekapo", location: "SH80 to SH8, Mt Cook to Lake Tekapo", badge: "1h 20", badgeType: "opt", defaultDone: false },
+      { id: "d4a11", time: "6:30 PM", name: "Dinner — Mackenzie's or Kohan", location: "SH8, Lake Tekapo Village", badge: "$22–38", badgeType: "opt", defaultDone: false },
     ],
   },
   { id: "day5", accom: "19A Takirirau Ave, Te Anau", accomUrl: "https://maps.google.com/?q=19A+Takirirau+Avenue+Te+Anau+New+Zealand", dayNum: "Day 5", date: "Sun 21 Jun", name: "Te Anau", meta: "364 km · 5h+ drive", driveVal: "5h+", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Longest driving day — 6:30 AM departure is essential",
     preview: ["Lindis Pass", "Cromwell fuel stop", "Queenstown brunch", "Te Anau", "Glowworm Caves"],
     activities: [
-      { id: "d5a1", time: "6:30 AM", name: "Wake up + fast breakfast", badge: "Early!", badgeType: "warn", defaultDone: false },
-      { id: "d5a2", time: "7:00 AM", name: "Depart Lake Tekapo", badge: "On time!", badgeType: "warn", defaultDone: false },
-      { id: "d5a3", time: "9:00 AM", name: "Cromwell — MANDATORY fuel + fruit", badge: "15 min", badgeType: "warn", defaultDone: false },
-      { id: "d5a4", time: "10:00 AM", name: "Queenstown — brunch break (2 hrs)", badge: "Break", badgeType: "opt", defaultDone: false },
-      { id: "d5a5", time: "12:00 PM", name: "Depart Queenstown → Te Anau", badge: "2h 12", badgeType: "opt", defaultDone: false },
-      { id: "d5a6", time: "2:30 PM", name: "Check in — 19A Takirirau Ave, Te Anau", badge: "Booked", badgeType: "done", defaultDone: false },
-      { id: "d5a7", time: "3:30 PM", name: "Groceries — Fresh Choice Te Anau", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "d5a8", time: "4:00 PM", name: "Te Anau lakefront walk", badge: "Free", badgeType: "done", defaultDone: false },
-      { id: "d5a9", time: "5:30 PM", name: "Dinner in Te Anau", badge: "$6–35", badgeType: "opt", defaultDone: false },
-      { id: "d5a10", time: "7:30 PM", name: "Te Anau Glowworm Caves tour ⭐⭐⭐", badge: "BOOK!", badgeType: "warn", defaultDone: false },
-      { id: "d5a11", time: "9:30 PM", name: "Return + pack lunch for Milford", badge: "Prep", badgeType: "warn", defaultDone: false },
+      { id: "d5a1", time: "6:30 AM", name: "Wake up + fast breakfast", location: "13 Coulson Lane, Lake Tekapo", badge: "Early!", badgeType: "warn", defaultDone: false },
+      { id: "d5a2", time: "7:00 AM", name: "Depart Lake Tekapo", location: "SH8, Lake Tekapo to Queenstown", badge: "On time!", badgeType: "warn", defaultDone: false },
+      { id: "d5a3", time: "9:00 AM", name: "Cromwell — MANDATORY fuel + fruit", location: "The Mall, Cromwell, Otago", badge: "15 min", badgeType: "warn", defaultDone: false },
+      { id: "d5a4", time: "10:00 AM", name: "Queenstown — brunch break (2 hrs)", location: "Beach Street, Queenstown Town Centre", badge: "Break", badgeType: "opt", defaultDone: false },
+      { id: "d5a5", time: "12:00 PM", name: "Depart Queenstown → Te Anau", location: "SH6 to SH94, Queenstown to Te Anau", badge: "2h 12", badgeType: "opt", defaultDone: false },
+      { id: "d5a6", time: "2:30 PM", name: "Check in — 19A Takirirau Ave, Te Anau", location: "19A Takirirau Avenue, Te Anau", badge: "Booked", badgeType: "done", defaultDone: false },
+      { id: "d5a7", time: "3:30 PM", name: "Groceries — Fresh Choice Te Anau", location: "54 Town Centre, Te Anau", badge: "Essential", badgeType: "warn", defaultDone: false },
+      { id: "d5a8", time: "4:00 PM", name: "Te Anau lakefront walk", location: "Te Anau Lakefront, Lakefront Drive, Te Anau", badge: "Free", badgeType: "done", defaultDone: false },
+      { id: "d5a9", time: "5:30 PM", name: "Dinner in Te Anau", location: "Town Centre, Te Anau", badge: "$6–35", badgeType: "opt", defaultDone: false },
+      { id: "d5a10", time: "7:30 PM", name: "Te Anau Glowworm Caves tour ⭐⭐⭐", location: "RealNZ Te Anau, 85 Lakefront Drive, Te Anau", badge: "BOOK!", badgeType: "warn", defaultDone: false },
+      { id: "d5a11", time: "9:30 PM", name: "Return + pack lunch for Milford", location: "19A Takirirau Avenue, Te Anau", badge: "Prep", badgeType: "warn", defaultDone: false },
     ],
   },
   { id: "day6", accom: "19A Takirirau Ave, Te Anau", accomUrl: "https://maps.google.com/?q=19A+Takirirau+Avenue+Te+Anau+New+Zealand", dayNum: "Day 6", date: "Mon 22 Jun", name: "Milford Sound", meta: "Te Anau base · coach day", driveVal: "6:00", driveUnit: "AM Check",
     dotsTotal: 5, dotsDone: 0, warn: "Check milfordroad.co.nz FIRST at 6 AM — may be closed",
     preview: ["Coach 7:45 AM", "Mirror Lakes", "The Chasm", "Homer Tunnel", "Milford Cruise ⭐⭐⭐⭐⭐"],
     activities: [
-      { id: "d6a1", time: "6:00 AM", name: "Wake + check milfordroad.co.nz", badge: "Critical", badgeType: "warn", defaultDone: false },
-      { id: "d6a2", time: "6:30 AM", name: "Breakfast + pack day bag", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "d6a3", time: "6:45 AM", name: "Walk to RealNZ Visitor Centre", badge: "85 Lakefront Dr", badgeType: "opt", defaultDone: false },
-      { id: "d6a4", time: "7:45 AM", name: "Board glass-roof coach to Milford", badge: "Departs", badgeType: "done", defaultDone: false },
-      { id: "d6a5", time: "8:30 AM", name: "Coach stop — Mirror Lakes", badge: "Photo!", badgeType: "purple", defaultDone: false },
-      { id: "d6a6", time: "9:00 AM", name: "Coach stop — The Chasm walk", badge: "15 min", badgeType: "opt", defaultDone: false },
-      { id: "d6a7", time: "9:15 AM", name: "Homer Tunnel (1.2 km raw rock)", badge: "Wow", badgeType: "purple", defaultDone: false },
-      { id: "d6a8", time: "11:00 AM", name: "Milford Sound cruise ⭐⭐⭐⭐⭐", badge: "2.5 hrs", badgeType: "purple", defaultDone: false },
-      { id: "d6a9", time: "1:30 PM", name: "Lunch at Milford — packed or cafe", badge: "$15–38", badgeType: "opt", defaultDone: false },
-      { id: "d6a10", time: "3:00 PM", name: "Board return coach", badge: "Homeward", badgeType: "done", defaultDone: false },
-      { id: "d6a11", time: "6:00 PM", name: "Arrive back Te Anau", badge: "Done!", badgeType: "done", defaultDone: false },
-      { id: "d6a12", time: "6:30 PM", name: "Celebration dinner 🎉", badge: "You earned it", badgeType: "purple", defaultDone: false },
+      { id: "d6a1", time: "6:00 AM", name: "Wake + check milfordroad.co.nz", location: "19A Takirirau Avenue, Te Anau", badge: "Critical", badgeType: "warn", defaultDone: false },
+      { id: "d6a2", time: "6:30 AM", name: "Breakfast + pack day bag", location: "19A Takirirau Avenue, Te Anau", badge: "Essential", badgeType: "warn", defaultDone: false },
+      { id: "d6a3", time: "6:45 AM", name: "Walk to RealNZ Visitor Centre", location: "85 Lakefront Drive, Te Anau", badge: "85 Lakefront Dr", badgeType: "opt", defaultDone: false },
+      { id: "d6a4", time: "7:45 AM", name: "Board glass-roof coach to Milford", location: "RealNZ Visitor Centre, 85 Lakefront Drive, Te Anau", badge: "Departs", badgeType: "done", defaultDone: false },
+      { id: "d6a5", time: "8:30 AM", name: "Coach stop — Mirror Lakes", location: "Mirror Lakes, Milford Road, Fiordland", badge: "Photo!", badgeType: "purple", defaultDone: false },
+      { id: "d6a6", time: "9:00 AM", name: "Coach stop — The Chasm walk", location: "The Chasm, Milford Road, Fiordland", badge: "15 min", badgeType: "opt", defaultDone: false },
+      { id: "d6a7", time: "9:15 AM", name: "Homer Tunnel (1.2 km raw rock)", location: "Homer Tunnel, Milford Road, Fiordland", badge: "Wow", badgeType: "purple", defaultDone: false },
+      { id: "d6a8", time: "11:00 AM", name: "Milford Sound cruise ⭐⭐⭐⭐⭐", location: "Milford Sound Wharf, Milford Sound", badge: "2.5 hrs", badgeType: "purple", defaultDone: false },
+      { id: "d6a9", time: "1:30 PM", name: "Lunch at Milford — packed or cafe", location: "Milford Sound Foreshore, Milford Sound", badge: "$15–38", badgeType: "opt", defaultDone: false },
+      { id: "d6a10", time: "3:00 PM", name: "Board return coach", location: "Milford Sound Terminal, Milford Sound", badge: "Homeward", badgeType: "done", defaultDone: false },
+      { id: "d6a11", time: "6:00 PM", name: "Arrive back Te Anau", location: "RealNZ Visitor Centre, 85 Lakefront Drive, Te Anau", badge: "Done!", badgeType: "done", defaultDone: false },
+      { id: "d6a12", time: "6:30 PM", name: "Celebration dinner 🎉", location: "Town Centre, Te Anau", badge: "You earned it", badgeType: "purple", defaultDone: false },
     ],
   },
   { id: "day7", accom: "", accomUrl: "", dayNum: "Day 7", date: "Tue 23 Jun", name: "Fly Home", meta: "Te Anau → Queenstown → Brisbane", driveVal: "4:35", driveUnit: "PM Fly",
     dotsTotal: 5, dotsDone: 0,
     activities: [
-      { id: "d7a1", time: "7:30 AM", name: "Final breakfast + pack all luggage", badge: "Check room!", badgeType: "warn", defaultDone: false },
-      { id: "d7a2", time: "8:30 AM", name: "Check out + drive Te Anau → Queenstown", badge: "2h 12", badgeType: "opt", defaultDone: false },
-      { id: "d7a3", time: "10:30 AM", name: "Arrive Queenstown — final 3 hrs", badge: "Free time", badgeType: "opt", defaultDone: false },
-      { id: "d7a4", time: "12:30 PM", name: "Light lunch in Queenstown", badge: "Last NZ meal!", badgeType: "opt", defaultDone: false },
-      { id: "d7a5", time: "1:00 PM", name: "Refuel car — Z Energy / BP Frankton Rd", badge: "Mandatory", badgeType: "warn", defaultDone: false },
-      { id: "d7a6", time: "1:15 PM", name: "Return rental car at airport", badge: "Follow signs", badgeType: "warn", defaultDone: false },
-      { id: "d7a7", time: "1:30 PM", name: "Airport check-in — Virgin Australia", badge: "2 hrs ahead", badgeType: "warn", defaultDone: false },
-      { id: "d7a8", time: "2:00 PM", name: "NZ Biosecurity + customs — declare all!", badge: "Strict!", badgeType: "warn", defaultDone: false },
-      { id: "d7a9", time: "4:35 PM", name: "Depart Queenstown — VA 118 ✈️", badge: "Fly home", badgeType: "done", defaultDone: false },
-      { id: "d7a10", time: "6:30 PM", name: "Arrive Brisbane (BNE) 🏠", badge: "Welcome home", badgeType: "done", defaultDone: false },
+      { id: "d7a1", time: "7:30 AM", name: "Final breakfast + pack all luggage", location: "19A Takirirau Avenue, Te Anau", badge: "Check room!", badgeType: "warn", defaultDone: false },
+      { id: "d7a2", time: "8:30 AM", name: "Check out + drive Te Anau → Queenstown", location: "SH94 to SH6, Te Anau to Queenstown", badge: "2h 12", badgeType: "opt", defaultDone: false },
+      { id: "d7a3", time: "10:30 AM", name: "Arrive Queenstown — final 3 hrs", location: "Queenstown Town Centre", badge: "Free time", badgeType: "opt", defaultDone: false },
+      { id: "d7a4", time: "12:30 PM", name: "Light lunch in Queenstown", location: "Beach Street, Queenstown Town Centre", badge: "Last NZ meal!", badgeType: "opt", defaultDone: false },
+      { id: "d7a5", time: "1:00 PM", name: "Refuel car — Z Energy / BP Frankton Rd", location: "Frankton Road, Frankton, Queenstown", badge: "Mandatory", badgeType: "warn", defaultDone: false },
+      { id: "d7a6", time: "1:15 PM", name: "Return rental car at airport", location: "Queenstown Airport, Sir Henry Wigley Drive, Frankton", badge: "Follow signs", badgeType: "warn", defaultDone: false },
+      { id: "d7a7", time: "1:30 PM", name: "Airport check-in — Virgin Australia", location: "Queenstown Airport, Sir Henry Wigley Drive, Frankton", badge: "2 hrs ahead", badgeType: "warn", defaultDone: false },
+      { id: "d7a8", time: "2:00 PM", name: "NZ Biosecurity + customs — declare all!", location: "Queenstown Airport International Terminal", badge: "Strict!", badgeType: "warn", defaultDone: false },
+      { id: "d7a9", time: "4:35 PM", name: "Depart Queenstown — VA 118 ✈️", location: "Queenstown Airport (ZQN), Frankton", badge: "Fly home", badgeType: "done", defaultDone: false },
+      { id: "d7a10", time: "6:30 PM", name: "Arrive Brisbane (BNE) 🏠", location: "Brisbane Airport (BNE), Airport Drive, Brisbane", badge: "Welcome home", badgeType: "done", defaultDone: false },
     ],
   },
 ];
@@ -126,7 +126,7 @@ const DEFAULT_TODO_GROUPS = [
       { id: "t4", cat: "Booked", name: "Glacier hike — Mt Cook #349831078", badge: "", badgeType: "done", defaultDone: true },
     ],
   },
-  { id: "thisweek", label: "This Week", emoji: "🟡", sublabel: "Prep",
+  { id: "beforeyougo", label: "Before You Go", emoji: "🟢", subNote: "This week + packing",
     items: [
       { id: "t5", cat: "Insurance", name: "Verify HSBC covers glacier hiking + helicopter", badge: "", badgeType: "done", defaultDone: true },
       { id: "t6", cat: "Insurance", name: "Buy rental car excess cover", badge: "", badgeType: "done", defaultDone: true },
@@ -135,10 +135,6 @@ const DEFAULT_TODO_GROUPS = [
       { id: "t9", cat: "Money", name: "Exchange AUD → NZD (cards mostly fine)", badge: "$100–200 ea", badgeType: "opt", defaultDone: false },
       { id: "t10", cat: "Car", name: "Request snow chains at car rental pickup", badge: "Essential", badgeType: "warn", defaultDone: false },
       { id: "t11", cat: "Car", name: "Watch: 'How to fit snow chains' on YouTube", badge: "10 min", badgeType: "opt", defaultDone: false },
-    ],
-  },
-  { id: "beforeyougo", label: "Before You Go", emoji: "🟢", subNote: "3–5 days before",
-    items: [
       { id: "t12", cat: "Gear", name: "Pack winter layers — multiple thermals", badge: "Essential", badgeType: "warn", defaultDone: false },
       { id: "t13", cat: "Gear", name: "Waterproof jacket + pants", badge: "Essential", badgeType: "warn", defaultDone: false },
       { id: "t14", cat: "Gear", name: "Clean hiking boots — NZ biosecurity strict", badge: "Required", badgeType: "warn", defaultDone: false },
@@ -244,7 +240,7 @@ function Overline({ children }) {
   );
 }
 
-function ActivityRow({ time, name, badge, badgeType, checked, onToggle }) {
+function ActivityRow({ time, name, badge, badgeType, checked, onToggle, location, locationUrl }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0" }}>
       <Checkbox checked={checked} onToggle={onToggle} />
@@ -255,6 +251,14 @@ function ActivityRow({ time, name, badge, badgeType, checked, onToggle }) {
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
           textDecoration: checked ? "line-through" : "none", opacity: checked ? 0.22 : 1,
         }}>{name}</div>
+        {location && (
+          <a href={locationUrl || `https://maps.google.com/?q=${encodeURIComponent(location)}`}
+            target="_blank" rel="noopener noreferrer"
+            onClick={e => e.stopPropagation()}
+            style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, fontWeight: 500, color: S.text, opacity: 0.4, textDecoration: "none" }}>
+            📍 {location}
+          </a>
+        )}
       </div>
       {badge ? <Badge type={badgeType}>{badge}</Badge> : null}
     </div>
@@ -264,9 +268,29 @@ function ActivityRow({ time, name, badge, badgeType, checked, onToggle }) {
 // ─── TRIP PAGE ────────────────────────────────────────────────────────────────
 function TripPage({ checked, onToggle }) {
   const [expanded, setExpanded] = useState({ day1: true });
-  const totalActs = TRIP_DAYS.reduce((n, d) => n + d.activities.length, 0);
-  const doneActs = TRIP_DAYS.reduce((n, d) => n + d.activities.filter(a => checked[a.id]).length, 0);
-  const pct = Math.round((doneActs / totalActs) * 100);
+  const [skipped, setSkipped] = useState(() => getLS("nz_skipped", {}));
+  const [customActs, setCustomActs] = useState(() => getLS("nz_custom_acts", {})); // { dayId: [{id, name}] }
+  const [addingTo, setAddingTo] = useState(null);
+  const [newActName, setNewActName] = useState("");
+
+  useEffect(() => { setLS("nz_skipped", skipped); }, [skipped]);
+  useEffect(() => { setLS("nz_custom_acts", customActs); }, [customActs]);
+
+  const handleAddAct = (dayId) => {
+    if (!newActName.trim()) return;
+    const id = "custom_act_" + Date.now();
+    setCustomActs(prev => ({ ...prev, [dayId]: [...(prev[dayId] || []), { id, name: newActName.trim() }] }));
+    setNewActName(""); setAddingTo(null);
+  };
+
+  const allActs = (day) => [
+    ...day.activities,
+    ...(customActs[day.id] || []).map(a => ({ ...a, time: "Added", badge: "", badgeType: "opt", defaultDone: false, custom: true }))
+  ];
+
+  const totalActs = TRIP_DAYS.reduce((n, d) => n + allActs(d).filter(a => !skipped[a.id]).length, 0);
+  const doneActs = TRIP_DAYS.reduce((n, d) => n + allActs(d).filter(a => !skipped[a.id] && checked[a.id]).length, 0);
+  const pct = totalActs > 0 ? Math.round((doneActs / totalActs) * 100) : 0;
   const segsOn = Math.round((pct / 100) * 7);
 
   return (
@@ -343,13 +367,7 @@ function TripPage({ checked, onToggle }) {
                     <div style={{ fontSize: 12, fontWeight: 600, color: "#6B4000" }}>{day.warn}</div>
                   </div>
                 )}
-                {!isOpen && day.preview && (
-                  <div style={{ display: "flex", gap: 6, flexWrap: "wrap", padding: "10px 22px 16px" }}>
-                    {day.preview.map(p => (
-                      <span key={p} style={{ fontSize: 11, fontWeight: 600, background: S.faint, color: S.text, opacity: 0.6, borderRadius: 20, padding: "5px 12px" }}>{p}</span>
-                    ))}
-                  </div>
-                )}
+
                 {!isOpen && (
                   <div style={{ padding: "6px 22px 14px" }}>
                     <div style={{ fontSize: 12, color: S.text, opacity: 0.28, fontStyle: "italic" }}>Tap to expand {day.activities.length} activities</div>
@@ -363,12 +381,59 @@ function TripPage({ checked, onToggle }) {
                         <div style={{ fontSize: 12, fontWeight: 600, color: "#6B4000" }}>{day.warn}</div>
                       </div>
                     )}
-                    {day.activities.map((act, idx) => (
-                      <div key={act.id} style={{ borderBottom: idx < day.activities.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                        <ActivityRow {...act} checked={!!checked[act.id]} onToggle={() => onToggle(act.id)} />
+                    {allActs(day).map((act, idx) => {
+                      const isSkipped = !!skipped[act.id];
+                      const acts = allActs(day);
+                      return (
+                        <div key={act.id} style={{ borderBottom: idx < acts.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
+                          <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0", opacity: isSkipped ? 0.3 : 1 }}>
+                            <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
+                              <div style={{
+                                fontSize: 15, fontWeight: 500, color: S.text,
+                                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                                textDecoration: (isSkipped || checked[act.id]) ? "line-through" : "none",
+                                opacity: (isSkipped || checked[act.id]) ? 0.3 : 1,
+                              }}>{act.name}</div>
+                              {act.location && !isSkipped && (
+                                <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
+                                  target="_blank" rel="noopener noreferrer"
+                                  onClick={e => e.stopPropagation()}
+                                  style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
+                                  📍 {act.location}
+                                </a>
+                              )}
+                            </div>
+                            <div
+                              onClick={e => { e.stopPropagation(); setSkipped(s => ({ ...s, [act.id]: !s[act.id] })); }}
+                              style={{ fontSize: 11, fontWeight: 600, color: S.text, opacity: isSkipped ? 0.55 : 0.18, cursor: "pointer", flexShrink: 0, letterSpacing: "0.04em" }}
+                            >{isSkipped ? "Undo" : "Skip"}</div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                    {/* Add item */}
+                    {addingTo === day.id ? (
+                      <div style={{ display: "flex", gap: 8, padding: "10px 0 14px", alignItems: "center" }}>
+                        <input autoFocus placeholder="Add a stop or activity..."
+                          value={newActName}
+                          onChange={e => setNewActName(e.target.value)}
+                          onKeyDown={e => { if (e.key === "Enter") handleAddAct(day.id); if (e.key === "Escape") setAddingTo(null); }}
+                          style={{ ...inputStyle, marginBottom: 0, flex: 1 }} />
+                        <div onClick={() => handleAddAct(day.id)} style={{ background: S.dark, color: "#F0F0F0", borderRadius: 10, padding: "10px 14px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Add</div>
+                        <div onClick={() => setAddingTo(null)} style={{ background: S.faint, color: S.text, borderRadius: 10, padding: "10px 10px", fontSize: 13, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
                       </div>
-                    ))}
-                    <div style={{ height: 10 }} />
+                    ) : (
+                      <div onClick={() => { setAddingTo(day.id); setNewActName(""); }}
+                        style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0 14px", cursor: "pointer" }}>
+                        <div style={{ width: 22, height: 22, borderRadius: "50%", border: "1.5px dashed rgba(26,26,26,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="rgba(26,26,26,0.35)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                        </div>
+                        <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.35 }}>Add a stop</div>
+                      </div>
+                    )}
+                    <div style={{ height: 4 }} />
                   </div>
                 )}
               </div>
