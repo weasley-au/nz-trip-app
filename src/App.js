@@ -4,7 +4,7 @@ const PEOPLE = ["Weasley", "Amy", "Joanne", "Yume"];
 const TABS = ["Trip", "To-do", "Budget"];
 
 const TRIP_DAYS = [
-  { id: "day1", dayNum: "Day 1", date: "Wed 17 Jun", name: "Arrival", meta: "Queenstown", driveVal: "3:40", driveUnit: "PM Land", dotsTotal: 5, dotsDone: 0,
+  { id: "day1", accom: "14 Hall Street, Queenstown", accomUrl: "https://maps.google.com/?q=14+Hall+Street+Queenstown+New+Zealand", dayNum: "Day 1", date: "Wed 17 Jun", name: "Arrival", meta: "Queenstown", driveVal: "3:40", driveUnit: "PM Land", dotsTotal: 5, dotsDone: 0,
     activities: [
       { id: "d1a1", time: "10:10 AM", name: "Depart Brisbane — VA 119", badge: "Flight", badgeType: "purple", defaultDone: false },
       { id: "d1a2", time: "3:40 PM", name: "Arrive Queenstown Airport (ZQN)", badge: "Land", badgeType: "done", defaultDone: false },
@@ -15,7 +15,7 @@ const TRIP_DAYS = [
       { id: "d1a7", time: "9:00 PM", name: "Optional: Below Zero Ice Bar", badge: "$25 pp", badgeType: "opt", defaultDone: false },
     ],
   },
-  { id: "day2", dayNum: "Day 2", date: "Thu 18 Jun", name: "Arrowtown & Wānaka", meta: "82 km · 1h 19 drive", driveVal: "1h 19", driveUnit: "Drive",
+  { id: "day2", accom: "14 Hall Street, Wānaka", accomUrl: "https://maps.google.com/?q=14+Hall+Street+Wanaka+New+Zealand", dayNum: "Day 2", date: "Thu 18 Jun", name: "Arrowtown & Wānaka", meta: "82 km · 1h 19 drive", driveVal: "1h 19", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Crown Range — 13% grade, chains likely required",
     preview: ["Arrowtown", "Crown Range", "Cardrona Hotel", "#ThatWānakaTree", "Lake Walk"],
     activities: [
@@ -32,7 +32,7 @@ const TRIP_DAYS = [
       { id: "d2a11", time: "5:30 PM", name: "Dinner in Wānaka", badge: "$18–48", badgeType: "opt", defaultDone: false },
     ],
   },
-  { id: "day3", dayNum: "Day 3", date: "Fri 19 Jun", name: "Lake Tekapo", meta: "258 km · 3h+ drive", driveVal: "3h+", driveUnit: "Drive",
+  { id: "day3", accom: "13 Coulson Lane, Lake Tekapo", accomUrl: "https://maps.google.com/?q=13+Coulson+Lane+Lake+Tekapo+New+Zealand", dayNum: "Day 3", date: "Fri 19 Jun", name: "Lake Tekapo", meta: "258 km · 3h+ drive", driveVal: "3h+", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Lindis Pass — chains likely required (971m elevation)",
     preview: ["Lindis Pass", "Lake Pukaki", "Church of Good Shepherd", "Kohan Lunch", "Stargazing ⭐"],
     activities: [
@@ -49,7 +49,7 @@ const TRIP_DAYS = [
       { id: "d3a11", time: "8:30 PM", name: "Stargazing — Dark Sky Reserve ⭐", badge: "Free / $129", badgeType: "done", defaultDone: false },
     ],
   },
-  { id: "day4", dayNum: "Day 4", date: "Sat 20 Jun", name: "Glacier Hike", meta: "Mt Cook · 62 km from Tekapo", driveVal: "6:30", driveUnit: "AM Wake",
+  { id: "day4", accom: "13 Coulson Lane, Lake Tekapo", accomUrl: "https://maps.google.com/?q=13+Coulson+Lane+Lake+Tekapo+New+Zealand", dayNum: "Day 4", date: "Sat 20 Jun", name: "Glacier Hike", meta: "Mt Cook · 62 km from Tekapo", driveVal: "6:30", driveUnit: "AM Wake",
     dotsTotal: 5, dotsDone: 0, warn: "SH80 to Mt Cook — chains required. Leave 7 AM sharp",
     activities: [
       { id: "d4a1", time: "6:30 AM", name: "Wake up — NON-NEGOTIABLE ⏰", badge: "Alarm", badgeType: "warn", defaultDone: false },
@@ -65,7 +65,7 @@ const TRIP_DAYS = [
       { id: "d4a11", time: "6:30 PM", name: "Dinner — Mackenzie's or Kohan", badge: "$22–38", badgeType: "opt", defaultDone: false },
     ],
   },
-  { id: "day5", dayNum: "Day 5", date: "Sun 21 Jun", name: "Te Anau", meta: "364 km · 5h+ drive", driveVal: "5h+", driveUnit: "Drive",
+  { id: "day5", accom: "19A Takirirau Ave, Te Anau", accomUrl: "https://maps.google.com/?q=19A+Takirirau+Avenue+Te+Anau+New+Zealand", dayNum: "Day 5", date: "Sun 21 Jun", name: "Te Anau", meta: "364 km · 5h+ drive", driveVal: "5h+", driveUnit: "Drive",
     dotsTotal: 5, dotsDone: 0, warn: "Longest driving day — 6:30 AM departure is essential",
     preview: ["Lindis Pass", "Cromwell fuel stop", "Queenstown brunch", "Te Anau", "Glowworm Caves"],
     activities: [
@@ -82,7 +82,7 @@ const TRIP_DAYS = [
       { id: "d5a11", time: "9:30 PM", name: "Return + pack lunch for Milford", badge: "Prep", badgeType: "warn", defaultDone: false },
     ],
   },
-  { id: "day6", dayNum: "Day 6", date: "Mon 22 Jun", name: "Milford Sound", meta: "Te Anau base · coach day", driveVal: "6:00", driveUnit: "AM Check",
+  { id: "day6", accom: "19A Takirirau Ave, Te Anau", accomUrl: "https://maps.google.com/?q=19A+Takirirau+Avenue+Te+Anau+New+Zealand", dayNum: "Day 6", date: "Mon 22 Jun", name: "Milford Sound", meta: "Te Anau base · coach day", driveVal: "6:00", driveUnit: "AM Check",
     dotsTotal: 5, dotsDone: 0, warn: "Check milfordroad.co.nz FIRST at 6 AM — may be closed",
     preview: ["Coach 7:45 AM", "Mirror Lakes", "The Chasm", "Homer Tunnel", "Milford Cruise ⭐⭐⭐⭐⭐"],
     activities: [
@@ -100,7 +100,7 @@ const TRIP_DAYS = [
       { id: "d6a12", time: "6:30 PM", name: "Celebration dinner 🎉", badge: "You earned it", badgeType: "purple", defaultDone: false },
     ],
   },
-  { id: "day7", dayNum: "Day 7", date: "Tue 23 Jun", name: "Fly Home", meta: "Te Anau → Queenstown → Brisbane", driveVal: "4:35", driveUnit: "PM Fly",
+  { id: "day7", accom: "", accomUrl: "", dayNum: "Day 7", date: "Tue 23 Jun", name: "Fly Home", meta: "Te Anau → Queenstown → Brisbane", driveVal: "4:35", driveUnit: "PM Fly",
     dotsTotal: 5, dotsDone: 0,
     activities: [
       { id: "d7a1", time: "7:30 AM", name: "Final breakfast + pack all luggage", badge: "Check room!", badgeType: "warn", defaultDone: false },
@@ -123,13 +123,13 @@ const DEFAULT_TODO_GROUPS = [
       { id: "t1", cat: "Critical", name: "Apply NZeTA online — all 4 people", badge: "Urgent", badgeType: "warn", defaultDone: false },
       { id: "t2", cat: "Critical", name: "Book Te Anau Glowworm Caves — realnz.com", badge: "ASAP", badgeType: "warn", defaultDone: false },
       { id: "t3", cat: "Critical", name: "Book Milford Sound cruise — RealNZ", badge: "ASAP", badgeType: "warn", defaultDone: false },
-      { id: "t4", cat: "Booked", name: "Glacier hike — Mt Cook #349831078", badge: "Done", badgeType: "done", defaultDone: true },
+      { id: "t4", cat: "Booked", name: "Glacier hike — Mt Cook #349831078", badge: "", badgeType: "done", defaultDone: true },
     ],
   },
   { id: "thisweek", label: "This Week", emoji: "🟡", sublabel: "Prep",
     items: [
-      { id: "t5", cat: "Insurance", name: "Verify HSBC covers glacier hiking + helicopter", badge: "Done", badgeType: "done", defaultDone: true },
-      { id: "t6", cat: "Insurance", name: "Buy rental car excess cover", badge: "Done", badgeType: "done", defaultDone: true },
+      { id: "t5", cat: "Insurance", name: "Verify HSBC covers glacier hiking + helicopter", badge: "", badgeType: "done", defaultDone: true },
+      { id: "t6", cat: "Insurance", name: "Buy rental car excess cover", badge: "", badgeType: "done", defaultDone: true },
       { id: "t7", cat: "Phone", name: "Download offline maps — Google Maps + Maps.me", badge: "All 4", badgeType: "opt", defaultDone: false },
       { id: "t8", cat: "Phone", name: "Enable NZ roaming OR buy Spark NZ SIM at ZQN", badge: "Essential", badgeType: "warn", defaultDone: false },
       { id: "t9", cat: "Money", name: "Exchange AUD → NZD (cards mostly fine)", badge: "$100–200 ea", badgeType: "opt", defaultDone: false },
@@ -256,7 +256,7 @@ function ActivityRow({ time, name, badge, badgeType, checked, onToggle }) {
           textDecoration: checked ? "line-through" : "none", opacity: checked ? 0.22 : 1,
         }}>{name}</div>
       </div>
-      <Badge type={badgeType}>{badge}</Badge>
+      {badge ? <Badge type={badgeType}>{badge}</Badge> : null}
     </div>
   );
 }
@@ -320,6 +320,13 @@ function TripPage({ checked, onToggle }) {
                     <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35, marginBottom: 6 }}>{day.dayNum} · {day.date}</div>
                     <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
                     <div style={{ fontSize: 13, color: "#F0F0F0", opacity: 0.4 }}>{day.meta}</div>
+                    {day.accom && (
+                      <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
+                        onClick={e => e.stopPropagation()}
+                        style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, fontSize: 11, fontWeight: 500, color: "#F0F0F0", opacity: 0.45, textDecoration: "none", background: "rgba(240,240,240,0.1)", borderRadius: 20, padding: "3px 10px" }}>
+                        📍 {day.accom}
+                      </a>
+                    )}
                   </div>
                   <div style={{ textAlign: "right" }}>
                     <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1 }}>{day.driveVal}</div>
@@ -581,18 +588,12 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
       <div style={{ position: "relative", marginBottom: 12 }}>
         <div style={{ background: S.card, borderRadius: 20, overflow: "hidden" }}>
           <div style={{ padding: "20px 22px" }}>
-            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.3, marginBottom: 14 }}>Jun 17–23 · 4 people</div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 18 }}>
-              <div>
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.3, marginBottom: 14 }}>Jun 17–23</div>
+            <div style={{ marginBottom: 18 }}>
                 <div style={{ fontSize: 13, color: S.text, opacity: 0.4, marginBottom: 5 }}>Total spent</div>
                 <div style={{ fontSize: 38, fontWeight: 800, color: S.text, letterSpacing: -2, lineHeight: 1 }}>
                   <span style={{ fontSize: 18, fontWeight: 500, opacity: 0.4 }}>NZD </span>{total.toLocaleString()}
                 </div>
-              </div>
-              <div style={{ textAlign: "right" }}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: S.text, opacity: 0.3, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 4 }}>Per person</div>
-                <div style={{ fontSize: 24, fontWeight: 700, color: S.text, letterSpacing: -1 }}>${perPerson.toLocaleString()}</div>
-              </div>
             </div>
             {EXPENSE_CATS.filter(c => catTotals[c] > 0).map(c => {
               const st = CAT_STYLE[c];
