@@ -347,9 +347,9 @@ function TripPage({ checked, onToggle }) {
                     ))}
                   </div>
                 )}
-                {!isOpen && !day.preview && (
-                  <div style={{ padding: "14px 22px 18px" }}>
-                    <div style={{ fontSize: 13, color: S.text, opacity: 0.3, fontStyle: "italic" }}>Tap to expand {day.activities.length} activities</div>
+                {!isOpen && (
+                  <div style={{ padding: "6px 22px 14px" }}>
+                    <div style={{ fontSize: 12, color: S.text, opacity: 0.28, fontStyle: "italic" }}>Tap to expand {day.activities.length} activities</div>
                   </div>
                 )}
                 {isOpen && (
@@ -435,7 +435,9 @@ function TodoPage({ checked, onToggle }) {
                   ) : (
                     <div onClick={() => { setAddingTo(group.id); setNewItem(""); }}
                       style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0 13px", cursor: "pointer" }}>
-                      <div style={{ width: 22, height: 22, borderRadius: "50%", border: "1.5px dashed rgba(26,26,26,0.25)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, color: "rgba(26,26,26,0.3)", flexShrink: 0 }}>+</div>
+                      <div style={{ width: 22, height: 22, borderRadius: "50%", border: "1.5px dashed rgba(26,26,26,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="rgba(26,26,26,0.35)" strokeWidth="1.5" strokeLinecap="round"/></svg>
+                      </div>
                       <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.35 }}>Add item</div>
                     </div>
                   )}
@@ -554,20 +556,19 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
           </div>
         </div>
       ) : (
-        <div onClick={() => { setShowBudgetEdit(true); setBudgetInput(String(budget)); }}
-          style={{ background: S.dark, borderRadius: 20, padding: "20px 22px", marginBottom: 12, cursor: "pointer" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 18 }}>
+        <div style={{ background: S.dark, borderRadius: 20, padding: "20px 22px", marginBottom: 12 }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18 }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.4, marginBottom: 8 }}>Total Budget</div>
-              <div style={{ fontSize: 34, fontWeight: 800, color: "#F0F0F0", letterSpacing: -1.5, lineHeight: 1, marginBottom: 10 }}>NZD {budget.toLocaleString()}</div>
-              <div style={{ fontSize: 13, color: "#F0F0F0", opacity: 0.35 }}>Tap to edit ✎</div>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: "#F0F0F0", opacity: 0.4, marginBottom: 6 }}>Remaining</div>
-              <div style={{ fontSize: 32, fontWeight: 800, color: "#F0F0F0", letterSpacing: -1.5 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35, marginBottom: 10 }}>Total Budget</div>
+              <div style={{ fontSize: 36, fontWeight: 800, color: "#F0F0F0", letterSpacing: -1.5, lineHeight: 1, marginBottom: 10 }}>NZD {budget.toLocaleString()}</div>
+              <div style={{ fontSize: 12, fontWeight: 500, color: "#F0F0F0", opacity: 0.4, marginBottom: 2 }}>Remaining</div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: "#F0F0F0", opacity: 0.65, letterSpacing: -0.5 }}>
                 {remaining < 0 ? "-" : ""}${Math.abs(remaining).toLocaleString()}
               </div>
-              <div style={{ fontSize: 12, color: "#F0F0F0", opacity: 0.3, marginTop: 6 }}>{spentPct}% spent</div>
+            </div>
+            <div onClick={(e) => { e.stopPropagation(); setShowBudgetEdit(true); setBudgetInput(String(budget)); }}
+              style={{ background: "rgba(240,240,240,0.12)", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 600, color: "#F0F0F0", opacity: 0.7, cursor: "pointer", flexShrink: 0, marginTop: 2 }}>
+              Edit ✎
             </div>
           </div>
           <div style={{ height: 5, background: "rgba(240,240,240,0.12)", borderRadius: 3 }}>
@@ -622,7 +623,9 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
           background: S.faint, color: S.text, borderRadius: 14,
           height: 52, fontSize: 14, fontWeight: 600, marginBottom: 10, cursor: "pointer",
         }}>
-          <div style={{ width: 24, height: 24, borderRadius: "50%", background: S.dark, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18, color: "#F0F0F0", lineHeight: 1 }}>+</div>
+          <div style={{ width: 24, height: 24, borderRadius: "50%", background: S.dark, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#F0F0F0" strokeWidth="1.8" strokeLinecap="round"/></svg>
+        </div>
           Add Expense
         </div>
       ) : (
