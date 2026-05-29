@@ -195,22 +195,6 @@ function Notch({ left, top, size = 22 }) {
   );
 }
 
-function Badge({ type, children }) {
-  const styles = {
-    done:   { border: "1.5px solid #1A7A4A", color: "#0D4A2A", bg: "transparent" },
-    warn:   { border: "1.5px solid #B87A00", color: "#6B4000", bg: "transparent" },
-    opt:    { border: "1px solid rgba(26,26,26,0.2)", color: "rgba(26,26,26,0.4)", bg: "transparent" },
-    purple: { border: "1.5px solid #3D3A8C", color: "#3D3A8C", bg: "transparent" },
-  };
-  const st = styles[type] || styles.opt;
-  return (
-    <span style={{
-      fontSize: 11, fontWeight: 600, padding: "4px 10px", borderRadius: 20, flexShrink: 0,
-      border: st.border, color: st.color, background: st.bg, whiteSpace: "nowrap",
-    }}>{children}</span>
-  );
-}
-
 function Checkbox({ checked, onToggle }) {
   return (
     <div onClick={onToggle} style={{
