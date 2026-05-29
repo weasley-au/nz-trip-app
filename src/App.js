@@ -118,38 +118,34 @@ const TRIP_DAYS = [
 ];
 
 const DEFAULT_TODO_GROUPS = [
-  { id: "today", label: "Do Today", emoji: "🔴", sublabel: "Urgent",
+  { id: "beforetrip", label: "Before Trip", emoji: "✈️", sublabel: "Everything",
     items: [
-      { id: "t1", cat: "Critical", name: "Apply NZeTA online — all 4 people", badge: "Urgent", badgeType: "warn", defaultDone: false },
-      { id: "t2", cat: "Critical", name: "Book Te Anau Glowworm Caves — realnz.com", badge: "ASAP", badgeType: "warn", defaultDone: false },
-      { id: "t3", cat: "Critical", name: "Book Milford Sound cruise — RealNZ", badge: "ASAP", badgeType: "warn", defaultDone: false },
-      { id: "t4", cat: "Booked", name: "Glacier hike — Mt Cook #349831078", badge: "", badgeType: "done", defaultDone: true },
-    ],
-  },
-  { id: "beforeyougo", label: "Before You Go", emoji: "🟢", subNote: "This week + packing",
-    items: [
-      { id: "t5", cat: "Insurance", name: "Verify HSBC covers glacier hiking + helicopter", badge: "", badgeType: "done", defaultDone: true },
-      { id: "t6", cat: "Insurance", name: "Buy rental car excess cover", badge: "", badgeType: "done", defaultDone: true },
-      { id: "t7", cat: "Phone", name: "Download offline maps — Google Maps + Maps.me", badge: "All 4", badgeType: "opt", defaultDone: false },
-      { id: "t8", cat: "Phone", name: "Enable NZ roaming OR buy Spark NZ SIM at ZQN", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "t9", cat: "Money", name: "Exchange AUD → NZD (cards mostly fine)", badge: "$100–200 ea", badgeType: "opt", defaultDone: false },
-      { id: "t10", cat: "Car", name: "Request snow chains at car rental pickup", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "t11", cat: "Car", name: "Watch: 'How to fit snow chains' on YouTube", badge: "10 min", badgeType: "opt", defaultDone: false },
-      { id: "t12", cat: "Gear", name: "Pack winter layers — multiple thermals", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "t13", cat: "Gear", name: "Waterproof jacket + pants", badge: "Essential", badgeType: "warn", defaultDone: false },
-      { id: "t14", cat: "Gear", name: "Clean hiking boots — NZ biosecurity strict", badge: "Required", badgeType: "warn", defaultDone: false },
-      { id: "t15", cat: "Tech", name: "Charge all devices + power banks", badge: "All 4", badgeType: "opt", defaultDone: false },
-      { id: "t16", cat: "Docs", name: "Print/download glacier hike + Milford confirmations", badge: "In bag", badgeType: "opt", defaultDone: false },
-      { id: "t17", cat: "Flight", name: "Online check-in VA 119 (opens 48h before)", badge: "Opens 48h", badgeType: "opt", defaultDone: false },
+      { id: "t1", cat: "Critical", name: "Apply NZeTA online — all 4 people", defaultDone: false },
+      { id: "t2", cat: "Critical", name: "Book Te Anau Glowworm Caves — realnz.com", defaultDone: false },
+      { id: "t3", cat: "Critical", name: "Book Milford Sound cruise — RealNZ", defaultDone: false },
+      { id: "t4", cat: "Booked", name: "Glacier hike — Mt Cook #349831078", defaultDone: true },
+      { id: "t5", cat: "Insurance", name: "Verify HSBC covers glacier hiking + helicopter", defaultDone: true },
+      { id: "t6", cat: "Insurance", name: "Buy rental car excess cover", defaultDone: true },
+      { id: "t7", cat: "Phone", name: "Download offline maps — Google Maps + Maps.me", defaultDone: false },
+      { id: "t8", cat: "Phone", name: "Enable NZ roaming OR buy Spark NZ SIM at ZQN", defaultDone: false },
+      { id: "t9", cat: "Money", name: "Exchange AUD to NZD (cards mostly fine)", defaultDone: false },
+      { id: "t10", cat: "Car", name: "Request snow chains at car rental pickup", defaultDone: false },
+      { id: "t11", cat: "Car", name: "Watch how to fit snow chains on YouTube", defaultDone: false },
+      { id: "t12", cat: "Gear", name: "Pack winter layers — multiple thermals", defaultDone: false },
+      { id: "t13", cat: "Gear", name: "Waterproof jacket + pants", defaultDone: false },
+      { id: "t14", cat: "Gear", name: "Clean hiking boots — NZ biosecurity strict", defaultDone: false },
+      { id: "t15", cat: "Tech", name: "Charge all devices + power banks", defaultDone: false },
+      { id: "t16", cat: "Docs", name: "Print or download glacier hike + Milford confirmations", defaultDone: false },
+      { id: "t17", cat: "Flight", name: "Online check-in VA 119 (opens 48h before)", defaultDone: false },
     ],
   },
   { id: "duringtrip", label: "During Trip", emoji: "📍", sublabel: "Daily reminders",
     items: [
-      { id: "t18", cat: "Daily", name: "Check MetService NZ + road conditions each morning", badge: "metservice.com", badgeType: "purple", defaultDone: false },
-      { id: "t19", cat: "Day 6", name: "Check milfordroad.co.nz at 6:00 AM sharp", badge: "Critical", badgeType: "warn", defaultDone: false },
-      { id: "t20", cat: "Safety", name: "Share live location with family back home", badge: "All 4", badgeType: "opt", defaultDone: false },
-      { id: "t21", cat: "Money", name: "Log expenses in Budget tab daily", badge: "Daily", badgeType: "opt", defaultDone: false },
-      { id: "t22", cat: "Car", name: "Refuel BEFORE Te Anau (fuel 10–15% more expensive)", badge: "Save $", badgeType: "warn", defaultDone: false },
+      { id: "t18", cat: "Daily", name: "Check MetService NZ + road conditions each morning", defaultDone: false },
+      { id: "t19", cat: "Day 6", name: "Check milfordroad.co.nz at 6:00 AM sharp", defaultDone: false },
+      { id: "t20", cat: "Safety", name: "Share live location with family back home", defaultDone: false },
+      { id: "t21", cat: "Money", name: "Log expenses in Budget tab daily", defaultDone: false },
+      { id: "t22", cat: "Car", name: "Refuel BEFORE Te Anau (fuel 10-15% more expensive)", defaultDone: false },
     ],
   },
 ];
@@ -169,7 +165,7 @@ function setLS(key, val) { try { localStorage.setItem(key, JSON.stringify(val));
 function buildDefaultChecked() {
   const map = {};
   TRIP_DAYS.forEach(d => d.activities.forEach(a => { map[a.id] = a.defaultDone; }));
-  DEFAULT_TODO_GROUPS.forEach(g => g.items.forEach(i => { map[i.id] = i.defaultDone; }));
+  DEFAULT_TODO_GROUPS.forEach(g => g.items.forEach(i => { map[i.id] = !!i.defaultDone; }));
   return map;
 }
 
@@ -319,6 +315,118 @@ function SwipeableRow({ children, onSkip, onDelete, onEdit, skipLabel = "Skip", 
   );
 }
 
+// ─── ADDRESS INPUT ────────────────────────────────────────────────────────────
+const NZ_PLACES = [
+  "Queenstown Airport, Sir Henry Wigley Drive, Frankton",
+  "14 Hall Street, Queenstown",
+  "42 Shotover Street, Queenstown (Fergburger)",
+  "New World Queenstown, Gorge Road",
+  "Steamer Wharf, Beach Street, Queenstown",
+  "Arrowtown, Otago",
+  "Buckingham Street, Arrowtown",
+  "49 Buckingham Street, Arrowtown (Lakes District Museum)",
+  "Crown Range Road, Otago",
+  "Cardrona Hotel, Crown Range Road, Cardrona",
+  "14 Hall Street, Wānaka",
+  "That Wānaka Tree, Beacon Point Road, Wānaka",
+  "Lakefront Road, Wānaka",
+  "SH6 to SH8, Wānaka to Lake Tekapo",
+  "The Mall, Cromwell, Otago",
+  "Church of the Good Shepherd, Lake Tekapo",
+  "Lake Tekapo Village, Mackenzie District",
+  "Kohan Restaurant, SH8, Twizel",
+  "Lake Pukaki Viewpoint, SH8",
+  "13 Coulson Lane, Lake Tekapo",
+  "6 Lakeside Drive, Lake Tekapo (Tekapo Springs)",
+  "Mt Cook Village, Aoraki/Mount Cook",
+  "The Helicopter Line, Mt Cook Village",
+  "Tasman Glacier, Aoraki/Mount Cook National Park",
+  "Old Mountaineers Cafe, Mt Cook Village",
+  "Hooker Valley Track, Aoraki/Mount Cook",
+  "SH8 to SH80, Lake Tekapo to Mt Cook",
+  "19A Takirirau Avenue, Te Anau",
+  "54 Town Centre, Te Anau (Fresh Choice)",
+  "Te Anau Lakefront, Lakefront Drive, Te Anau",
+  "RealNZ, 85 Lakefront Drive, Te Anau",
+  "Mirror Lakes, Milford Road, Fiordland",
+  "The Chasm, Milford Road, Fiordland",
+  "Homer Tunnel, Milford Road, Fiordland",
+  "Milford Sound Wharf, Milford Sound",
+  "SH94 to SH6, Te Anau to Queenstown",
+  "Frankton Road, Frankton, Queenstown",
+  "Brisbane Airport, Airport Drive, Brisbane",
+];
+
+function AddressInput({ value, onChange, placeholder, style }) {
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSug, setShowSug] = useState(false);
+
+  const handleChange = (val) => {
+    onChange(val);
+    if (val.length < 2) { setSuggestions([]); setShowSug(false); return; }
+    const lower = val.toLowerCase();
+    const matches = NZ_PLACES.filter(p => p.toLowerCase().includes(lower)).slice(0, 4);
+    setSuggestions(matches);
+    setShowSug(matches.length > 0);
+  };
+
+  return (
+    <div style={{ position: "relative" }}>
+      <input
+        placeholder={placeholder}
+        value={value}
+        onChange={e => handleChange(e.target.value)}
+        onBlur={() => setTimeout(() => setShowSug(false), 150)}
+        style={style}
+      />
+      {showSug && suggestions.length > 0 && (
+        <div style={{
+          position: "absolute", left: 0, right: 0, top: "100%", zIndex: 200,
+          background: S.card, borderRadius: 10, boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
+          overflow: "hidden", marginTop: 4, border: "1px solid #EEEEEE",
+        }}>
+          {suggestions.map((s, i) => (
+            <div key={i}
+              onMouseDown={() => { onChange(s); setSuggestions([]); setShowSug(false); }}
+              style={{ padding: "10px 14px", fontSize: 13, color: S.text, borderBottom: i < suggestions.length - 1 ? "1px solid #F5F5F5" : "none", cursor: "pointer" }}>
+              📍 {s}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── TIME INPUT ───────────────────────────────────────────────────────────────
+function TimeInput({ value, onChange, placeholder, style }) {
+  const formatTime = (raw) => {
+    // Strip non-numeric except colon and letters
+    const digits = raw.replace(/[^0-9apmAPM\s:]/g, "");
+    // Auto-detect and format: "230pm" → "2:30 PM", "9" → "9:00 AM" etc
+    const clean = raw.replace(/\s/g, "").toLowerCase();
+    const match = clean.match(/^(\d{1,2}):?(\d{0,2})(am|pm)?$/);
+    if (!match) return raw;
+    let [, h, m, period] = match;
+    h = parseInt(h);
+    m = m ? m.padEnd(2, "0") : "00";
+    if (!period) period = h < 12 ? "AM" : "PM";
+    else period = period.toUpperCase();
+    if (h === 0) h = 12;
+    return `${h}:${m} ${period}`;
+  };
+
+  return (
+    <input
+      placeholder={placeholder}
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      onBlur={e => { const formatted = formatTime(e.target.value); if (formatted !== e.target.value) onChange(formatted); }}
+      style={style}
+    />
+  );
+}
+
 // ─── TRIP PAGE ────────────────────────────────────────────────────────────────
 function TripPage({ checked, onToggle }) {
   const [expanded, setExpanded] = useState({ day1: true });
@@ -326,31 +434,45 @@ function TripPage({ checked, onToggle }) {
   const [customActs, setCustomActs] = useState(() => getLS("nz_custom_acts", {}));
   const [addingTo, setAddingTo] = useState(null);
   const [newActName, setNewActName] = useState("");
+  const [newActLoc, setNewActLoc] = useState("");
+  const [newActTime, setNewActTime] = useState("");
   const [editingAct, setEditingAct] = useState(null);
   const [editActName, setEditActName] = useState("");
+  const [editActTime, setEditActTime] = useState("");
+  const [editActLoc, setEditActLoc] = useState("");
+  const [builtInOverrides, setBuiltInOverrides] = useState(() => getLS("nz_overrides", {}));
+
+  const [activeMenu, setActiveMenu] = useState(null);
 
   useEffect(() => { setLS("nz_skipped", skipped); }, [skipped]);
   useEffect(() => { setLS("nz_custom_acts", customActs); }, [customActs]);
+  useEffect(() => { setLS("nz_overrides", builtInOverrides); }, [builtInOverrides]);
 
   const handleAddAct = (dayId) => {
     if (!newActName.trim()) return;
     const id = "custom_act_" + Date.now();
-    setCustomActs(prev => ({ ...prev, [dayId]: [...(prev[dayId] || []), { id, name: newActName.trim() }] }));
-    setNewActName(""); setAddingTo(null);
+    setCustomActs(prev => ({ ...prev, [dayId]: [...(prev[dayId] || []), { id, name: newActName.trim(), time: newActTime.trim(), location: newActLoc.trim() }] }));
+    setNewActName(""); setNewActTime(""); setNewActLoc(""); setAddingTo(null);
   };
 
   const handleEditSave = (dayId, actId) => {
     if (!editActName.trim()) return;
+    // For custom acts, update directly
     setCustomActs(prev => ({
       ...prev,
-      [dayId]: (prev[dayId] || []).map(a => a.id === actId ? { ...a, name: editActName.trim() } : a)
+      [dayId]: (prev[dayId] || []).map(a => a.id === actId ? { ...a, name: editActName.trim(), time: editActTime.trim() || a.time, location: editActLoc.trim() || a.location } : a)
+    }));
+    // For built-in acts, store overrides separately
+    setBuiltInOverrides(prev => ({
+      ...prev,
+      [actId]: { name: editActName.trim(), time: editActTime.trim(), location: editActLoc.trim() }
     }));
     setEditingAct(null);
   };
 
   const allActs = (day) => [
-    ...day.activities,
-    ...(customActs[day.id] || []).map(a => ({ ...a, time: "Added", badge: "", badgeType: "opt", defaultDone: false, custom: true }))
+    ...day.activities.filter(a => !skipped[a.id + "_hidden"]).map(a => builtInOverrides[a.id] ? { ...a, ...builtInOverrides[a.id] } : a),
+    ...(customActs[day.id] || []).map(a => ({ ...a, time: a.time || "Added", badge: "", badgeType: "opt", defaultDone: false, custom: true }))
   ];
 
   const totalActs = TRIP_DAYS.reduce((n, d) => n + allActs(d).filter(a => !skipped[a.id]).length, 0);
@@ -401,9 +523,9 @@ function TripPage({ checked, onToggle }) {
         const dayDone = day.activities.filter(a => checked[a.id]).length;
         return (
           <div key={day.id} style={{ position: "relative", marginBottom: 12 }}>
-            <div style={{ borderRadius: 20, overflow: "hidden", background: S.dark }}
+            <div style={{ borderRadius: 20, background: S.dark }}
               onClick={() => setExpanded(e => ({ ...e, [day.id]: !e[day.id] }))}>
-              <div style={{ padding: "18px 22px 20px", cursor: "pointer" }}>
+              <div style={{ padding: "18px 22px 20px", cursor: "pointer", borderRadius: "20px 20px 0 0" }}>
                 <div style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                     <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
@@ -425,7 +547,7 @@ function TripPage({ checked, onToggle }) {
                   ))}
                 </div>
               </div>
-              <div style={{ background: S.card, cursor: "pointer", borderTop: "1.5px dashed rgba(240,240,240,0.15)" }}>
+              <div style={{ background: S.card, cursor: "pointer", borderTop: "1.5px dashed rgba(240,240,240,0.15)", borderRadius: "0 0 20px 20px" }}>
                 {!isOpen && day.warn && (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "12px 22px 4px", padding: "9px 12px", background: "#FFF8EB", borderRadius: 10 }}>
                     <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#B87A00", flexShrink: 0 }} />
@@ -453,56 +575,102 @@ function TripPage({ checked, onToggle }) {
                       const isEditingThis = editingAct === act.id;
                       return (
                         <div key={act.id} style={{ borderBottom: idx < acts.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                          <SwipeableRow
-                            isSkipped={isSkipped}
-                            onSkip={() => setSkipped(s => ({ ...s, [act.id]: !s[act.id] }))}
-                            onEdit={isCustom ? () => { setEditingAct(act.id); setEditActName(act.name); } : null}
-                            onDelete={isCustom ? () => setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) })) : null}
-                          >
-                            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0", opacity: isSkipped ? 0.3 : 1 }}>
-                              <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
-                              <div style={{ flex: 1, minWidth: 0 }}>
-                                <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
-                                {isEditingThis ? (
-                                  <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
-                                    <input autoFocus value={editActName} onChange={e => setEditActName(e.target.value)}
-                                      onKeyDown={e => { if (e.key === "Enter") handleEditSave(day.id, act.id); if (e.key === "Escape") setEditingAct(null); }}
-                                      style={{ ...inputStyle, marginBottom: 0, flex: 1, fontSize: 14, padding: "5px 10px" }} />
-                                    <div onClick={() => handleEditSave(day.id, act.id)} style={{ background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "5px 10px", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Save</div>
-                                    <div onClick={() => setEditingAct(null)} style={{ background: S.faint, borderRadius: 8, padding: "5px 8px", fontSize: 12, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
+                          <div style={{ display: "flex", alignItems: "flex-start", gap: 14, padding: "13px 0" }}>
+                            <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
+                            <div style={{ flex: 1, minWidth: 0 }}>
+                              <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
+                              {isEditingThis ? (
+                                <div style={{ marginBottom: 4 }}>
+                                  <input autoFocus placeholder="Activity name..." value={editActName} onChange={e => setEditActName(e.target.value)}
+                                    style={{ ...inputStyle, marginBottom: 6, fontSize: 14, padding: "6px 10px" }} />
+                                  <TimeInput placeholder="Time (e.g. 9:00 AM)..." value={editActTime} onChange={setEditActTime}
+                                    style={{ ...inputStyle, marginBottom: 6, fontSize: 14, padding: "6px 10px" }} />
+                                  <AddressInput placeholder="Location (optional)..." value={editActLoc} onChange={setEditActLoc}
+                                    style={{ ...inputStyle, marginBottom: 6, fontSize: 14, padding: "6px 10px" }} />
+                                  <div style={{ display: "flex", gap: 6 }}>
+                                    <div onClick={() => handleEditSave(day.id, act.id)} style={{ flex: 1, background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "8px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Save</div>
+                                    <div onClick={() => setEditingAct(null)} style={{ flex: 1, background: S.faint, borderRadius: 8, padding: "8px 0", fontSize: 13, cursor: "pointer", textAlign: "center", opacity: 0.5 }}>Cancel</div>
                                   </div>
-                                ) : (
-                                  <div style={{
-                                    fontSize: 15, fontWeight: 500, color: S.text,
-                                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                                    textDecoration: (isSkipped || checked[act.id]) ? "line-through" : "none",
-                                    opacity: (isSkipped || checked[act.id]) ? 0.3 : 1,
-                                  }}>{act.name}</div>
-                                )}
-                                {act.location && !isSkipped && !isEditingThis && (
-                                  <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
-                                    target="_blank" rel="noopener noreferrer"
-                                    onClick={e => e.stopPropagation()}
-                                    style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
-                                    📍 {act.location}
-                                  </a>
+                                </div>
+                              ) : (
+                                <div style={{
+                                  fontSize: 15, fontWeight: 500, color: S.text,
+                                  whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                                  textDecoration: (isSkipped || checked[act.id]) ? "line-through" : "none",
+                                  opacity: (isSkipped || checked[act.id]) ? 0.3 : 1,
+                                }}>{act.name}</div>
+                              )}
+                              {act.location && !isSkipped && !isEditingThis && (
+                                <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
+                                  target="_blank" rel="noopener noreferrer"
+                                  onClick={e => e.stopPropagation()}
+                                  style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
+                                  📍 {act.location}
+                                </a>
+                              )}
+                            </div>
+                            {/* ··· menu */}
+                            {!isEditingThis && (
+                              <div style={{ position: "relative", flexShrink: 0 }}>
+                                <div onClick={e => { e.stopPropagation(); setActiveMenu(activeMenu === act.id ? null : act.id); }}
+                                  style={{ width: 28, height: 28, borderRadius: 8, background: activeMenu === act.id ? "rgba(26,26,26,0.12)" : S.faint, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", gap: 2 }}>
+                                  <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                                  <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                                  <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                                </div>
+                                {activeMenu === act.id && (
+                                  <div onClick={e => e.stopPropagation()} style={{
+                                    position: "absolute", right: 0, top: 32, zIndex: 100,
+                                    background: "#2A2A2A", borderRadius: 14, overflow: "hidden",
+                                    minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+                                  }}>
+                                    <div onClick={() => { setEditingAct(act.id); setEditActName(act.name); setEditActTime(act.time || ""); setEditActLoc(act.location || ""); setActiveMenu(null); }}
+                                      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
+                                      <span style={{ fontSize: 15, color: "#F0F0F0" }}>Edit</span>
+                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                    </div>
+                                    <div onClick={() => { setSkipped(s => ({ ...s, [act.id]: !s[act.id] })); setActiveMenu(null); }}
+                                      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
+                                      <span style={{ fontSize: 15, color: "#F0F0F0" }}>{isSkipped ? "Undo Skip" : "Skip"}</span>
+                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 3l5 5-5 5" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                    </div>
+                                    <div onClick={() => {
+                                      if (isCustom) setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) }));
+                                      else setSkipped(s => { const n = {...s}; n[act.id + "_hidden"] = true; return n; });
+                                      setActiveMenu(null);
+                                    }}
+                                      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer" }}>
+                                      <span style={{ fontSize: 15, color: "#FF4444" }}>Delete</span>
+                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M6 4V3h4v1M5 4v8h6V4" stroke="#FF4444" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                                    </div>
+                                  </div>
                                 )}
                               </div>
-                            </div>
-                          </SwipeableRow>
+                            )}
+                          </div>
                         </div>
                       );
                     })}
                     {/* Add item */}
                     {addingTo === day.id ? (
-                      <div style={{ display: "flex", gap: 8, padding: "10px 0 14px", alignItems: "center" }}>
-                        <input autoFocus placeholder="Add a stop or activity..."
+                      <div style={{ padding: "10px 0 14px" }}>
+                        <input autoFocus placeholder="Stop or activity name..."
                           value={newActName}
                           onChange={e => setNewActName(e.target.value)}
-                          onKeyDown={e => { if (e.key === "Enter") handleAddAct(day.id); if (e.key === "Escape") setAddingTo(null); }}
-                          style={{ ...inputStyle, marginBottom: 0, flex: 1 }} />
-                        <div onClick={() => handleAddAct(day.id)} style={{ background: S.dark, color: "#F0F0F0", borderRadius: 10, padding: "10px 14px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Add</div>
-                        <div onClick={() => setAddingTo(null)} style={{ background: S.faint, color: S.text, borderRadius: 10, padding: "10px 10px", fontSize: 13, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
+                          onKeyDown={e => { if (e.key === "Escape") { setAddingTo(null); setNewActLoc(""); } }}
+                          style={{ ...inputStyle, marginBottom: 8 }} />
+                        <TimeInput placeholder="Time (e.g. 2:00 PM)..."
+                          value={newActTime}
+                          onChange={setNewActTime}
+                          style={{ ...inputStyle, marginBottom: 8 }} />
+                        <AddressInput placeholder="Location (optional)..."
+                          value={newActLoc}
+                          onChange={setNewActLoc}
+                          style={{ ...inputStyle, marginBottom: 8 }} />
+                        <div style={{ display: "flex", gap: 8 }}>
+                          <div onClick={() => handleAddAct(day.id)} style={{ flex: 1, background: S.dark, color: "#F0F0F0", borderRadius: 10, padding: "10px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Add</div>
+                          <div onClick={() => { setAddingTo(null); setNewActLoc(""); setNewActTime(""); }} style={{ flex: 1, background: S.faint, color: S.text, borderRadius: 10, padding: "10px 0", fontSize: 13, cursor: "pointer", textAlign: "center", opacity: 0.5 }}>Cancel</div>
+                        </div>
                       </div>
                     ) : (
                       <div onClick={() => { setAddingTo(day.id); setNewActName(""); }}
@@ -528,9 +696,12 @@ function TripPage({ checked, onToggle }) {
 
 // ─── TODO PAGE ────────────────────────────────────────────────────────────────
 function TodoPage({ checked, onToggle }) {
-  const [todoGroups, setTodoGroups] = useState(() => getLS("nz_todo_groups", DEFAULT_TODO_GROUPS));
+  const [todoGroups, setTodoGroups] = useState(() => { const saved = getLS("nz_todo_groups", null); if (!saved || !saved.find(g => g.id === 'beforetrip')) return DEFAULT_TODO_GROUPS; return saved; });
   const [addingTo, setAddingTo] = useState(null);
   const [newItem, setNewItem] = useState("");
+  const [activeMenuTodo, setActiveMenuTodo] = useState(null);
+  const [editingTodo, setEditingTodo] = useState(null);
+  const [editTodoName, setEditTodoName] = useState("");
   useEffect(() => { setLS("nz_todo_groups", todoGroups); }, [todoGroups]);
   const handleAdd = (groupId) => {
     if (!newItem.trim()) return;
@@ -548,9 +719,8 @@ function TodoPage({ checked, onToggle }) {
         const done = group.items.filter(i => checked[i.id]).length;
         return (
           <div key={group.id} style={{ marginBottom: 20 }}>
-            <Overline>{group.label}</Overline>
             <div style={{ position: "relative" }}>
-              <div style={{ borderRadius: 20, overflow: "hidden", background: S.dark }}>
+              <div style={{ borderRadius: 20, background: S.dark }}>
                 <div style={{ padding: "16px 22px 18px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
@@ -565,19 +735,63 @@ function TodoPage({ checked, onToggle }) {
                     </div>
                   </div>
                 </div>
-                <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(240,240,240,0.15)" }}>
-                  {group.items.map((item, idx) => (
-                    <div key={item.id} style={{ borderBottom: idx < group.items.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                      <SwipeableRow
-                        isSkipped={false}
-                        onSkip={() => onToggle(item.id)}
-                        skipLabel={checked[item.id] ? "Undo" : "Done"}
-                        onDelete={item.cat === "Custom" ? () => setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.filter(i => i.id !== item.id) } : g)) : null}
-                      >
-                        <ActivityRow id={item.id} time={item.cat} name={item.name} badge="" badgeType={item.badgeType} checked={!!checked[item.id]} onToggle={() => onToggle(item.id)} />
-                      </SwipeableRow>
-                    </div>
-                  ))}
+                <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(240,240,240,0.15)", borderRadius: "0 0 20px 20px" }}>
+                  {group.items.map((item, idx) => {
+                    const isChecked = !!checked[item.id];
+                    const isCustom = item.cat === "Custom";
+                    return (
+                      <div key={item.id} style={{ borderBottom: idx < group.items.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0" }}>
+                          <Checkbox checked={isChecked} onToggle={() => onToggle(item.id)} />
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            {editingTodo === item.id ? (
+                              <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                                <input autoFocus value={editTodoName} onChange={e => setEditTodoName(e.target.value)}
+                                  onKeyDown={e => {
+                                    if (e.key === "Enter") { setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.map(i => i.id === item.id ? { ...i, name: editTodoName.trim() } : i) } : g)); setEditingTodo(null); }
+                                    if (e.key === "Escape") setEditingTodo(null);
+                                  }}
+                                  style={{ ...inputStyle, marginBottom: 0, flex: 1, fontSize: 14, padding: "5px 10px" }} />
+                                <div onClick={() => { setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.map(i => i.id === item.id ? { ...i, name: editTodoName.trim() } : i) } : g)); setEditingTodo(null); }}
+                                  style={{ background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "6px 12px", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Save</div>
+                                <div onClick={() => setEditingTodo(null)}
+                                  style={{ background: S.faint, borderRadius: 8, padding: "6px 8px", fontSize: 12, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
+                              </div>
+                            ) : (
+                              <div style={{ fontSize: 15, fontWeight: 500, color: S.text, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textDecoration: isChecked ? "line-through" : "none", opacity: isChecked ? 0.3 : 1 }}>{item.name}</div>
+                            )}
+                          </div>
+                          {/* ··· menu */}
+                          <div style={{ position: "relative", flexShrink: 0 }}>
+                            <div onClick={() => setActiveMenuTodo(activeMenuTodo === item.id ? null : item.id)}
+                              style={{ width: 28, height: 28, borderRadius: 8, background: activeMenuTodo === item.id ? "rgba(26,26,26,0.12)" : S.faint, display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", gap: 2 }}>
+                              <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                              <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                              <div style={{ width: 3, height: 3, borderRadius: "50%", background: S.text, opacity: 0.45 }} />
+                            </div>
+                            {activeMenuTodo === item.id && (
+                              <div style={{
+                                position: "absolute", right: 0, bottom: 36, zIndex: 100,
+                                background: "#2A2A2A", borderRadius: 14, overflow: "hidden",
+                                minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
+                              }}>
+                                <div onClick={() => { setEditingTodo(item.id); setEditTodoName(item.name); setActiveMenuTodo(null); }}
+                                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
+                                  <span style={{ fontSize: 15, color: "#F0F0F0" }}>Edit</span>
+                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                </div>
+                                <div onClick={() => { setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.filter(i => i.id !== item.id) } : g)); setActiveMenuTodo(null); }}
+                                  style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer" }}>
+                                  <span style={{ fontSize: 15, color: "#FF4444" }}>Delete</span>
+                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M6 4V3h4v1M5 4v8h6V4" stroke="#FF4444" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                                </div>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                   {addingTo === group.id ? (
                     <div style={{ display: "flex", gap: 8, padding: "12px 0 14px", alignItems: "center" }}>
                       <input autoFocus placeholder="Add item..." value={newItem}
