@@ -265,13 +265,69 @@ function ActivityRow({ time, name, badge, badgeType, checked, onToggle, location
   );
 }
 
+// ─── SWIPEABLE ROW ────────────────────────────────────────────────────────────
+function SwipeableRow({ children, onSkip, onDelete, onEdit, skipLabel = "Skip", isSkipped }) {
+  const [offsetX, setOffsetX] = useState(0);
+  const [swiping, setSwiping] = useState(false);
+  const startX = useRef(null);
+  const SNAP = 100;
+
+  const handleTouchStart = (e) => { startX.current = e.touches[0].clientX; setSwiping(true); };
+  const handleTouchMove = (e) => {
+    if (startX.current === null) return;
+    const dx = e.touches[0].clientX - startX.current;
+    if (dx < 0) setOffsetX(Math.max(dx, -SNAP));
+  };
+  const handleTouchEnd = () => {
+    if (offsetX < -SNAP / 2) setOffsetX(-SNAP);
+    else setOffsetX(0);
+    setSwiping(false);
+    startX.current = null;
+  };
+  const close = () => setOffsetX(0);
+
+  return (
+    <div style={{ position: "relative", overflow: "hidden" }}>
+      {/* Action buttons revealed on swipe */}
+      <div style={{ position: "absolute", right: 0, top: 0, bottom: 0, display: "flex", alignItems: "stretch" }}>
+        {onEdit && (
+          <div onClick={() => { onEdit(); close(); }} style={{ width: 50, background: "#E8E8E8", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#444" }}>Edit</span>
+          </div>
+        )}
+        {onSkip && (
+          <div onClick={() => { onSkip(); close(); }} style={{ width: 50, background: isSkipped ? "#D0D0D0" : "#1A1A1A", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: isSkipped ? "#444" : "#F0F0F0" }}>{isSkipped ? "Undo" : skipLabel}</span>
+          </div>
+        )}
+        {onDelete && (
+          <div onClick={() => { onDelete(); close(); }} style={{ width: 50, background: "#C0392B", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
+            <span style={{ fontSize: 11, fontWeight: 700, color: "#FFF" }}>Del</span>
+          </div>
+        )}
+      </div>
+      {/* Sliding content */}
+      <div
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{ transform: `translateX(${offsetX}px)`, transition: swiping ? "none" : "transform 0.2s ease", background: S.card, position: "relative", zIndex: 1 }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
 // ─── TRIP PAGE ────────────────────────────────────────────────────────────────
 function TripPage({ checked, onToggle }) {
   const [expanded, setExpanded] = useState({ day1: true });
   const [skipped, setSkipped] = useState(() => getLS("nz_skipped", {}));
-  const [customActs, setCustomActs] = useState(() => getLS("nz_custom_acts", {})); // { dayId: [{id, name}] }
+  const [customActs, setCustomActs] = useState(() => getLS("nz_custom_acts", {}));
   const [addingTo, setAddingTo] = useState(null);
   const [newActName, setNewActName] = useState("");
+  const [editingAct, setEditingAct] = useState(null);
+  const [editActName, setEditActName] = useState("");
 
   useEffect(() => { setLS("nz_skipped", skipped); }, [skipped]);
   useEffect(() => { setLS("nz_custom_acts", customActs); }, [customActs]);
@@ -281,6 +337,15 @@ function TripPage({ checked, onToggle }) {
     const id = "custom_act_" + Date.now();
     setCustomActs(prev => ({ ...prev, [dayId]: [...(prev[dayId] || []), { id, name: newActName.trim() }] }));
     setNewActName(""); setAddingTo(null);
+  };
+
+  const handleEditSave = (dayId, actId) => {
+    if (!editActName.trim()) return;
+    setCustomActs(prev => ({
+      ...prev,
+      [dayId]: (prev[dayId] || []).map(a => a.id === actId ? { ...a, name: editActName.trim() } : a)
+    }));
+    setEditingAct(null);
   };
 
   const allActs = (day) => [
@@ -384,32 +449,47 @@ function TripPage({ checked, onToggle }) {
                     {allActs(day).map((act, idx) => {
                       const isSkipped = !!skipped[act.id];
                       const acts = allActs(day);
+                      const isCustom = !!act.custom;
+                      const isEditingThis = editingAct === act.id;
                       return (
                         <div key={act.id} style={{ borderBottom: idx < acts.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                          <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0", opacity: isSkipped ? 0.3 : 1 }}>
-                            <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
-                            <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
-                              <div style={{
-                                fontSize: 15, fontWeight: 500, color: S.text,
-                                whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                                textDecoration: (isSkipped || checked[act.id]) ? "line-through" : "none",
-                                opacity: (isSkipped || checked[act.id]) ? 0.3 : 1,
-                              }}>{act.name}</div>
-                              {act.location && !isSkipped && (
-                                <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
-                                  target="_blank" rel="noopener noreferrer"
-                                  onClick={e => e.stopPropagation()}
-                                  style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
-                                  📍 {act.location}
-                                </a>
-                              )}
+                          <SwipeableRow
+                            isSkipped={isSkipped}
+                            onSkip={() => setSkipped(s => ({ ...s, [act.id]: !s[act.id] }))}
+                            onEdit={isCustom ? () => { setEditingAct(act.id); setEditActName(act.name); } : null}
+                            onDelete={isCustom ? () => setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) })) : null}
+                          >
+                            <div style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0", opacity: isSkipped ? 0.3 : 1 }}>
+                              <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
+                              <div style={{ flex: 1, minWidth: 0 }}>
+                                <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
+                                {isEditingThis ? (
+                                  <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
+                                    <input autoFocus value={editActName} onChange={e => setEditActName(e.target.value)}
+                                      onKeyDown={e => { if (e.key === "Enter") handleEditSave(day.id, act.id); if (e.key === "Escape") setEditingAct(null); }}
+                                      style={{ ...inputStyle, marginBottom: 0, flex: 1, fontSize: 14, padding: "5px 10px" }} />
+                                    <div onClick={() => handleEditSave(day.id, act.id)} style={{ background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "5px 10px", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Save</div>
+                                    <div onClick={() => setEditingAct(null)} style={{ background: S.faint, borderRadius: 8, padding: "5px 8px", fontSize: 12, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
+                                  </div>
+                                ) : (
+                                  <div style={{
+                                    fontSize: 15, fontWeight: 500, color: S.text,
+                                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                                    textDecoration: (isSkipped || checked[act.id]) ? "line-through" : "none",
+                                    opacity: (isSkipped || checked[act.id]) ? 0.3 : 1,
+                                  }}>{act.name}</div>
+                                )}
+                                {act.location && !isSkipped && !isEditingThis && (
+                                  <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
+                                    target="_blank" rel="noopener noreferrer"
+                                    onClick={e => e.stopPropagation()}
+                                    style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
+                                    📍 {act.location}
+                                  </a>
+                                )}
+                              </div>
                             </div>
-                            <div
-                              onClick={e => { e.stopPropagation(); setSkipped(s => ({ ...s, [act.id]: !s[act.id] })); }}
-                              style={{ fontSize: 11, fontWeight: 600, color: S.text, opacity: isSkipped ? 0.55 : 0.18, cursor: "pointer", flexShrink: 0, letterSpacing: "0.04em" }}
-                            >{isSkipped ? "Undo" : "Skip"}</div>
-                          </div>
+                          </SwipeableRow>
                         </div>
                       );
                     })}
@@ -488,7 +568,14 @@ function TodoPage({ checked, onToggle }) {
                 <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(240,240,240,0.15)" }}>
                   {group.items.map((item, idx) => (
                     <div key={item.id} style={{ borderBottom: idx < group.items.length - 1 ? "1px solid rgba(26,26,26,0.07)" : "none" }}>
-                      <ActivityRow id={item.id} time={item.cat} name={item.name} badge="" badgeType={item.badgeType} checked={!!checked[item.id]} onToggle={() => onToggle(item.id)} />
+                      <SwipeableRow
+                        isSkipped={false}
+                        onSkip={() => onToggle(item.id)}
+                        skipLabel={checked[item.id] ? "Undo" : "Done"}
+                        onDelete={item.cat === "Custom" ? () => setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.filter(i => i.id !== item.id) } : g)) : null}
+                      >
+                        <ActivityRow id={item.id} time={item.cat} name={item.name} badge="" badgeType={item.badgeType} checked={!!checked[item.id]} onToggle={() => onToggle(item.id)} />
+                      </SwipeableRow>
                     </div>
                   ))}
                   {addingTo === group.id ? (
