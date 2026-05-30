@@ -239,6 +239,19 @@ function AddressInput({ value, onChange, placeholder, style }) {
           componentRestrictions: { country: ["nz", "au"] },
           types: ["geocode", "establishment"],
         });
+
+        // Style to match app inputs
+        el.style.cssText = `
+          width: 100%;
+          --gmp-mat-color-surface: #F5F5F5;
+          --gmp-mat-color-on-surface: #1A1A1A;
+          --gmp-mat-color-outline: transparent;
+          --gmp-mat-typescale-body-large-size: 15px;
+          --gmp-mat-typescale-body-large-font: Inter, -apple-system, sans-serif;
+          border-radius: 12px;
+          overflow: hidden;
+        `;
+
         containerRef.current.appendChild(el);
         elementRef.current = el;
 
@@ -250,7 +263,6 @@ function AddressInput({ value, onChange, placeholder, style }) {
           setInputVal(addr);
         });
       } catch (err) {
-        console.error("Places init error:", err);
         setFallback(true);
       }
     };
