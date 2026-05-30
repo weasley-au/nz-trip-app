@@ -25,14 +25,8 @@
       .pac-icon { display: none !important; }
       .pac-item-query { font-size: 13px !important; }
     </style>
-    <script>
-      window.googleMapsReady = false;
-      function onGoogleMapsLoad() {
-        window.googleMapsReady = true;
-        window.dispatchEvent(new Event('googleMapsReady'));
-      }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqr68zlLLydUnkGf8HNAWA_9MRCdHbtk&libraries=places&callback=onGoogleMapsLoad" async defer></script>
+    <!-- Load Google Maps synchronously so it's ready before React mounts -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqr68zlLLydUnkGf8HNAWA_9MRCdHbtk&libraries=places"></script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

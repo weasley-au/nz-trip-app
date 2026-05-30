@@ -225,13 +225,13 @@ function AddressInput({ value, onChange, placeholder, style }) {
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
 
-  const initAutocomplete = useCallback(() => {
+  useEffect(() => {
     if (!inputRef.current || autocompleteRef.current) return;
     if (!window.google || !window.google.maps || !window.google.maps.places) return;
     autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current, {
       types: ["geocode", "establishment"],
       componentRestrictions: { country: ["nz", "au"] },
-      fields: ["formatted_address", "name", "geometry"],
+      fields: ["formatted_address", "name"],
     });
     autocompleteRef.current.addListener("place_changed", () => {
       const place = autocompleteRef.current.getPlace();
@@ -239,15 +239,6 @@ function AddressInput({ value, onChange, placeholder, style }) {
       else if (place && place.name) onChange(place.name);
     });
   }, [onChange]);
-
-  useEffect(() => {
-    if (window.googleMapsReady) {
-      initAutocomplete();
-    } else {
-      window.addEventListener("googleMapsReady", initAutocomplete);
-      return () => window.removeEventListener("googleMapsReady", initAutocomplete);
-    }
-  }, [initAutocomplete]);
 
   return (
     <input
@@ -749,7 +740,10 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
   const customRemaining = amountNum - customTotal;
 
   const handleAdd = () => {
-    if (!form.name || !form.amount) return;
+    if (!form.name.trim() || !form.amount || Number(form.amount) <= 0) {
+      alert("Please enter a description and amount.");
+      return;
+    }
     const today = new Date();
     const dateStr = today.toLocaleDateString("en-NZ", { weekday: "short", day: "numeric", month: "short" });
     const splitNote = splitMode === "equal"
