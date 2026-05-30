@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-    <meta name="theme-color" content="#E7E6ED" />
+    <meta name="theme-color" content="#F0F0F0" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -14,11 +14,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASqr68zlLLydUnkGf8HNAWA_9MRCdHbtk&libraries=places" async defer></script>
     <title>NZ 要幹嘛 🇳🇿</title>
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
-      html, body, #root { width: 100%; height: 100%; background: #E7E6ED; }
+      html, body, #root { width: 100%; height: 100%; background: #F0F0F0; }
       body { overflow-x: hidden; }
+      /* Google autocomplete dropdown styling */
+      .pac-container { border-radius: 10px; border: 1px solid #EEEEEE; box-shadow: 0 4px 16px rgba(0,0,0,0.10); margin-top: 4px; font-family: 'Inter', sans-serif; }
+      .pac-item { padding: 10px 14px; font-size: 13px; cursor: pointer; }
+      .pac-item:hover { background: #F5F5F5; }
+      .pac-icon { display: none; }
     </style>
   </head>
   <body>

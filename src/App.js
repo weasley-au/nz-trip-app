@@ -221,85 +221,34 @@ function Overline({ children }) {
 }
 
 // ─── ADDRESS INPUT ────────────────────────────────────────────────────────────
-const NZ_PLACES = [
-  "Queenstown Airport, Sir Henry Wigley Drive, Frankton",
-  "14 Hall Street, Queenstown",
-  "42 Shotover Street, Queenstown (Fergburger)",
-  "New World Queenstown, Gorge Road",
-  "Steamer Wharf, Beach Street, Queenstown",
-  "Arrowtown, Otago",
-  "Buckingham Street, Arrowtown",
-  "49 Buckingham Street, Arrowtown (Lakes District Museum)",
-  "Crown Range Road, Otago",
-  "Cardrona Hotel, Crown Range Road, Cardrona",
-  "14 Hall Street, Wānaka",
-  "That Wānaka Tree, Beacon Point Road, Wānaka",
-  "Lakefront Road, Wānaka",
-  "SH6 to SH8, Wānaka to Lake Tekapo",
-  "The Mall, Cromwell, Otago",
-  "Church of the Good Shepherd, Lake Tekapo",
-  "Lake Tekapo Village, Mackenzie District",
-  "Kohan Restaurant, SH8, Twizel",
-  "Lake Pukaki Viewpoint, SH8",
-  "13 Coulson Lane, Lake Tekapo",
-  "6 Lakeside Drive, Lake Tekapo (Tekapo Springs)",
-  "Mt Cook Village, Aoraki/Mount Cook",
-  "The Helicopter Line, Mt Cook Village",
-  "Tasman Glacier, Aoraki/Mount Cook National Park",
-  "Old Mountaineers Cafe, Mt Cook Village",
-  "Hooker Valley Track, Aoraki/Mount Cook",
-  "SH8 to SH80, Lake Tekapo to Mt Cook",
-  "19A Takirirau Avenue, Te Anau",
-  "54 Town Centre, Te Anau (Fresh Choice)",
-  "Te Anau Lakefront, Lakefront Drive, Te Anau",
-  "RealNZ, 85 Lakefront Drive, Te Anau",
-  "Mirror Lakes, Milford Road, Fiordland",
-  "The Chasm, Milford Road, Fiordland",
-  "Homer Tunnel, Milford Road, Fiordland",
-  "Milford Sound Wharf, Milford Sound",
-  "SH94 to SH6, Te Anau to Queenstown",
-  "Frankton Road, Frankton, Queenstown",
-  "Brisbane Airport, Airport Drive, Brisbane",
-];
-
 function AddressInput({ value, onChange, placeholder, style }) {
-  const [suggestions, setSuggestions] = useState([]);
-  const [showSug, setShowSug] = useState(false);
+  const inputRef = useRef(null);
+  const autocompleteRef = useRef(null);
 
-  const handleChange = (val) => {
-    onChange(val);
-    if (val.length < 2) { setSuggestions([]); setShowSug(false); return; }
-    const lower = val.toLowerCase();
-    const matches = NZ_PLACES.filter(p => p.toLowerCase().includes(lower)).slice(0, 4);
-    setSuggestions(matches);
-    setShowSug(matches.length > 0);
-  };
+  useEffect(() => {
+    if (!window.google || !inputRef.current) return;
+    autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current, {
+      types: ["geocode", "establishment"],
+      componentRestrictions: { country: ["nz", "au"] },
+    });
+    autocompleteRef.current.addListener("place_changed", () => {
+      const place = autocompleteRef.current.getPlace();
+      if (place && place.formatted_address) onChange(place.formatted_address);
+      else if (place && place.name) onChange(place.name);
+    });
+    return () => {
+      if (autocompleteRef.current) window.google.maps.event.clearInstanceListeners(autocompleteRef.current);
+    };
+  }, [onChange]);
 
   return (
-    <div style={{ position: "relative" }}>
-      <input
-        placeholder={placeholder}
-        value={value}
-        onChange={e => handleChange(e.target.value)}
-        onBlur={() => setTimeout(() => setShowSug(false), 150)}
-        style={style}
-      />
-      {showSug && suggestions.length > 0 && (
-        <div style={{
-          position: "absolute", left: 0, right: 0, top: "100%", zIndex: 200,
-          background: S.card, borderRadius: 10, boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
-          overflow: "hidden", marginTop: 4, border: "1px solid #EEEEEE",
-        }}>
-          {suggestions.map((s, i) => (
-            <div key={i}
-              onMouseDown={() => { onChange(s); setSuggestions([]); setShowSug(false); }}
-              style={{ padding: "10px 14px", fontSize: 13, color: S.text, borderBottom: i < suggestions.length - 1 ? "1px solid #F5F5F5" : "none", cursor: "pointer" }}>
-              📍 {s}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+    <input
+      ref={inputRef}
+      placeholder={placeholder}
+      value={value}
+      onChange={e => onChange(e.target.value)}
+      style={style}
+    />
   );
 }
 
