@@ -224,9 +224,21 @@ function Overline({ children }) {
 function AddressInput({ value, onChange, placeholder, style }) {
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
+  const [ready, setReady] = useState(!!window.google);
 
   useEffect(() => {
-    if (!window.google || !inputRef.current) return;
+    if (window.google) { setReady(true); return; }
+    const interval = setInterval(() => {
+      if (window.google && window.google.maps && window.google.maps.places) {
+        setReady(true);
+        clearInterval(interval);
+      }
+    }, 200);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (!ready || !inputRef.current || autocompleteRef.current) return;
     autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current, {
       types: ["geocode", "establishment"],
       componentRestrictions: { country: ["nz", "au"] },
@@ -236,10 +248,7 @@ function AddressInput({ value, onChange, placeholder, style }) {
       if (place && place.formatted_address) onChange(place.formatted_address);
       else if (place && place.name) onChange(place.name);
     });
-    return () => {
-      if (autocompleteRef.current) window.google.maps.event.clearInstanceListeners(autocompleteRef.current);
-    };
-  }, [onChange]);
+  }, [ready, onChange]);
 
   return (
     <input
