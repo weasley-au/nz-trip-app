@@ -224,31 +224,30 @@ function Overline({ children }) {
 function AddressInput({ value, onChange, placeholder, style }) {
   const inputRef = useRef(null);
   const autocompleteRef = useRef(null);
-  const [ready, setReady] = useState(!!window.google);
 
-  useEffect(() => {
-    if (window.google) { setReady(true); return; }
-    const interval = setInterval(() => {
-      if (window.google && window.google.maps && window.google.maps.places) {
-        setReady(true);
-        clearInterval(interval);
-      }
-    }, 200);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    if (!ready || !inputRef.current || autocompleteRef.current) return;
+  const initAutocomplete = useCallback(() => {
+    if (!inputRef.current || autocompleteRef.current) return;
+    if (!window.google || !window.google.maps || !window.google.maps.places) return;
     autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current, {
       types: ["geocode", "establishment"],
       componentRestrictions: { country: ["nz", "au"] },
+      fields: ["formatted_address", "name", "geometry"],
     });
     autocompleteRef.current.addListener("place_changed", () => {
       const place = autocompleteRef.current.getPlace();
       if (place && place.formatted_address) onChange(place.formatted_address);
       else if (place && place.name) onChange(place.name);
     });
-  }, [ready, onChange]);
+  }, [onChange]);
+
+  useEffect(() => {
+    if (window.googleMapsReady) {
+      initAutocomplete();
+    } else {
+      window.addEventListener("googleMapsReady", initAutocomplete);
+      return () => window.removeEventListener("googleMapsReady", initAutocomplete);
+    }
+  }, [initAutocomplete]);
 
   return (
     <input
@@ -619,7 +618,7 @@ function TodoPage({ checked, onToggle }) {
                                   style={{ background: S.faint, borderRadius: 8, padding: "6px 8px", fontSize: 12, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
                               </div>
                             ) : (
-                              <div style={{ fontSize: 15, fontWeight: 500, color: S.text, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", textDecoration: isChecked ? "line-through" : "none", opacity: isChecked ? 0.3 : 1 }}>{item.name}</div>
+                              <div style={{ fontSize: 15, fontWeight: 500, color: S.text, whiteSpace: "normal", wordBreak: "break-word", textDecoration: isChecked ? "line-through" : "none", opacity: isChecked ? 0.3 : 1 }}>{item.name}</div>
                             )}
                           </div>
                           {/* ··· menu */}
