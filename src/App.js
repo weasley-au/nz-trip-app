@@ -222,67 +222,64 @@ function Overline({ children }) {
 
 // ─── ADDRESS INPUT ────────────────────────────────────────────────────────────
 function AddressInput({ value, onChange, placeholder, style }) {
-  const containerRef = useRef(null);
-  const elementRef = useRef(null);
-  const [fallback, setFallback] = useState(false);
-  const [inputVal, setInputVal] = useState(value);
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSug, setShowSug] = useState(false);
+  const debounceRef = useRef(null);
+  const serviceRef = useRef(null);
 
-  useEffect(() => { setInputVal(value); }, [value]);
+  const getService = () => {
+    if (!serviceRef.current && window.google?.maps?.places?.AutocompleteService) {
+      serviceRef.current = new window.google.maps.places.AutocompleteService();
+    }
+    return serviceRef.current;
+  };
 
-  useEffect(() => {
-    if (!containerRef.current || elementRef.current) return;
+  const fetchSuggestions = (input) => {
+    if (!input || input.length < 3) { setSuggestions([]); setShowSug(false); return; }
+    clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      const svc = getService();
+      if (!svc) return;
+      svc.getPlacePredictions(
+        { input, componentRestrictions: { country: ["nz", "au"] }, types: ["geocode", "establishment"] },
+        (predictions, status) => {
+          if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
+            setSuggestions(predictions.map(p => p.description));
+            setShowSug(true);
+          } else {
+            setSuggestions([]); setShowSug(false);
+          }
+        }
+      );
+    }, 300);
+  };
 
-    const init = async () => {
-      try {
-        const { PlaceAutocompleteElement } = await window.google.maps.importLibrary("places");
-        const el = new PlaceAutocompleteElement({
-          componentRestrictions: { country: ["nz", "au"] },
-          types: ["geocode", "establishment"],
-        });
-
-        // Style to match app inputs
-        el.style.cssText = `
-          width: 100%;
-          --gmp-mat-color-surface: #F5F5F5;
-          --gmp-mat-color-on-surface: #1A1A1A;
-          --gmp-mat-color-outline: transparent;
-          --gmp-mat-typescale-body-large-size: 15px;
-          --gmp-mat-typescale-body-large-font: Inter, -apple-system, sans-serif;
-          border-radius: 12px;
-          overflow: hidden;
-        `;
-
-        containerRef.current.appendChild(el);
-        elementRef.current = el;
-
-        el.addEventListener("gmp-placeselect", async (e) => {
-          const place = e.placePrediction.toPlace();
-          await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
-          const addr = place.formattedAddress || place.displayName?.text || "";
-          onChange(addr);
-          setInputVal(addr);
-        });
-      } catch (err) {
-        setFallback(true);
-      }
-    };
-
-    if (window.google?.maps?.importLibrary) init();
-    else setFallback(true);
-  }, [onChange]);
-
-  if (fallback) {
-    return (
+  return (
+    <div style={{ position: "relative", marginBottom: style?.marginBottom }}>
       <input
         placeholder={placeholder}
-        value={inputVal}
-        onChange={e => { setInputVal(e.target.value); onChange(e.target.value); }}
-        style={style}
+        value={value}
+        onChange={e => { onChange(e.target.value); fetchSuggestions(e.target.value); }}
+        onBlur={() => setTimeout(() => setShowSug(false), 150)}
+        style={{ ...style, marginBottom: 0 }}
       />
-    );
-  }
-
-  return <div ref={containerRef} style={{ width: "100%", marginBottom: style?.marginBottom }} />;
+      {showSug && suggestions.length > 0 && (
+        <div style={{
+          position: "absolute", left: 0, right: 0, top: "calc(100% + 4px)", zIndex: 200,
+          background: "#FFF", borderRadius: 12, boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
+          overflow: "hidden", border: "1px solid #EEEEEE",
+        }}>
+          {suggestions.map((s, i) => (
+            <div key={i}
+              onMouseDown={() => { onChange(s); setSuggestions([]); setShowSug(false); }}
+              style={{ padding: "11px 14px", fontSize: 13, color: "#1A1A1A", borderBottom: i < suggestions.length - 1 ? "1px solid #F5F5F5" : "none", cursor: "pointer" }}>
+              📍 {s}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 // ─── TIME INPUT ───────────────────────────────────────────────────────────────
@@ -520,15 +517,13 @@ function TripPage({ checked, onToggle }) {
                                       <span style={{ fontSize: 15, color: "#F0F0F0" }}>{isSkipped ? "Undo Skip" : "Skip"}</span>
                                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 3l5 5-5 5" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
                                     </div>
-                                    <div onClick={() => {
-                                      if (isCustom) setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) }));
-                                      else setSkipped(s => { const n = {...s}; n[act.id + "_hidden"] = true; return n; });
-                                      setActiveMenu(null);
-                                    }}
-                                      style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer" }}>
-                                      <span style={{ fontSize: 15, color: "#FF4444" }}>Delete</span>
-                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M6 4V3h4v1M5 4v8h6V4" stroke="#FF4444" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
-                                    </div>
+                                    {isCustom ? (
+                                      <div onClick={() => { setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) })); setActiveMenu(null); }}
+                                        style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer" }}>
+                                        <span style={{ fontSize: 15, color: "#FF4444" }}>Delete</span>
+                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 4h10M6 4V3h4v1M5 4v8h6V4" stroke="#FF4444" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                                      </div>
+                                    ) : null}
                                   </div>
                                 )}
                               </div>
