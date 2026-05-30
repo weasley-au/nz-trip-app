@@ -222,33 +222,55 @@ function Overline({ children }) {
 
 // ─── ADDRESS INPUT ────────────────────────────────────────────────────────────
 function AddressInput({ value, onChange, placeholder, style }) {
-  const inputRef = useRef(null);
-  const autocompleteRef = useRef(null);
+  const containerRef = useRef(null);
+  const elementRef = useRef(null);
+  const [fallback, setFallback] = useState(false);
+  const [inputVal, setInputVal] = useState(value);
+
+  useEffect(() => { setInputVal(value); }, [value]);
 
   useEffect(() => {
-    if (!inputRef.current || autocompleteRef.current) return;
-    if (!window.google || !window.google.maps || !window.google.maps.places) return;
-    autocompleteRef.current = new window.google.maps.places.Autocomplete(inputRef.current, {
-      types: ["geocode", "establishment"],
-      componentRestrictions: { country: ["nz", "au"] },
-      fields: ["formatted_address", "name"],
-    });
-    autocompleteRef.current.addListener("place_changed", () => {
-      const place = autocompleteRef.current.getPlace();
-      if (place && place.formatted_address) onChange(place.formatted_address);
-      else if (place && place.name) onChange(place.name);
-    });
+    if (!containerRef.current || elementRef.current) return;
+
+    const init = async () => {
+      try {
+        const { PlaceAutocompleteElement } = await window.google.maps.importLibrary("places");
+        const el = new PlaceAutocompleteElement({
+          componentRestrictions: { country: ["nz", "au"] },
+          types: ["geocode", "establishment"],
+        });
+        containerRef.current.appendChild(el);
+        elementRef.current = el;
+
+        el.addEventListener("gmp-placeselect", async (e) => {
+          const place = e.placePrediction.toPlace();
+          await place.fetchFields({ fields: ["formattedAddress", "displayName"] });
+          const addr = place.formattedAddress || place.displayName?.text || "";
+          onChange(addr);
+          setInputVal(addr);
+        });
+      } catch (err) {
+        console.error("Places init error:", err);
+        setFallback(true);
+      }
+    };
+
+    if (window.google?.maps?.importLibrary) init();
+    else setFallback(true);
   }, [onChange]);
 
-  return (
-    <input
-      ref={inputRef}
-      placeholder={placeholder}
-      value={value}
-      onChange={e => onChange(e.target.value)}
-      style={style}
-    />
-  );
+  if (fallback) {
+    return (
+      <input
+        placeholder={placeholder}
+        value={inputVal}
+        onChange={e => { setInputVal(e.target.value); onChange(e.target.value); }}
+        style={style}
+      />
+    );
+  }
+
+  return <div ref={containerRef} style={{ width: "100%", marginBottom: style?.marginBottom }} />;
 }
 
 // ─── TIME INPUT ───────────────────────────────────────────────────────────────
