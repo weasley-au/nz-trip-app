@@ -170,12 +170,12 @@ function buildDefaultChecked() {
 }
 
 const S = {
-  bg: "#F0F0F0",
+  bg: "#F2F2F2",
   card: "#FFFFFF",
   dark: "#1A1A1A",
   text: "#1A1A1A",
-  muted: "rgba(26,26,26,0.4)",
-  faint: "rgba(26,26,26,0.07)",
+  muted: "rgba(26,26,26,0.45)",
+  faint: "rgba(26,26,26,0.06)",
   lightBg: "#F7F7F7",
 };
 
@@ -199,13 +199,13 @@ function Checkbox({ checked, onToggle }) {
   return (
     <div onClick={onToggle} style={{
       width: 22, height: 22, borderRadius: "50%", flexShrink: 0, cursor: "pointer",
-      border: checked ? "2px solid #1A1A1A" : "1.5px solid rgba(26,26,26,0.2)",
-      background: checked ? "#1A1A1A" : "transparent",
+      border: checked ? "2px solid #1E1B4B" : "1.5px solid rgba(26,26,26,0.2)",
+      background: checked ? "#1E1B4B" : "transparent",
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
       {checked && (
         <svg width="10" height="7" viewBox="0 0 10 7" fill="none">
-          <path d="M1 3.5L4 6.5L9 1" stroke="#F0F0F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M1 3.5L4 6.5L9 1" stroke="#F2F2F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )}
     </div>
@@ -406,31 +406,31 @@ function TripPage({ checked, onToggle }) {
         const dayDone = day.activities.filter(a => checked[a.id]).length;
         return (
           <div key={day.id} style={{ position: "relative", marginBottom: 12 }}>
-            <div style={{ borderRadius: 20, background: S.dark }}
+            <div style={{ borderRadius: 20, background: "#FFFFFF" }}
               onClick={() => setExpanded(e => ({ ...e, [day.id]: !e[day.id] }))}>
               <div style={{ padding: "18px 22px 20px", cursor: "pointer", borderRadius: "20px 20px 0 0" }}>
                 <div style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35 }}>{dayDone}/{day.activities.length} done</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F1FF", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1A1A1A", opacity: 0.5 }}>{dayDone}/{day.activities.length} done</div>
                   </div>
-                  <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
-                  <div style={{ fontSize: 13, color: "#F0F0F0", opacity: 0.4 }}>{day.meta}</div>
+                  <div style={{ fontSize: 26, fontWeight: 700, color: "#1A1A1A", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
+                  <div style={{ fontSize: 13, color: "#1A1A1A", opacity: 0.5 }}>{day.meta}</div>
                   {day.accom && (
                     <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
-                      style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, fontSize: 11, fontWeight: 500, color: "#F0F0F0", opacity: 0.45, textDecoration: "none", background: "rgba(240,240,240,0.1)", borderRadius: 20, padding: "3px 10px" }}>
+                      style={{ display: "inline-flex", alignItems: "center", gap: 4, marginTop: 8, fontSize: 11, fontWeight: 500, color: "#1A1A1A", opacity: 0.45, textDecoration: "none", background: "rgba(26,26,26,0.06)", borderRadius: 20, padding: "3px 10px" }}>
                       📍 {day.accom}
                     </a>
                   )}
                 </div>
                 <div style={{ display: "flex", gap: 3 }}>
                   {Array.from({ length: day.dotsTotal }).map((_, i) => (
-                    <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i < day.dotsDone ? "rgba(240,240,240,0.6)" : "rgba(240,240,240,0.15)" }} />
+                    <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i < day.dotsDone ? "rgba(26,26,26,0.35)" : "rgba(26,26,26,0.12)" }} />
                   ))}
                 </div>
               </div>
-              <div style={{ background: S.card, cursor: "pointer", borderTop: "1.5px dashed rgba(240,240,240,0.15)", borderRadius: "0 0 20px 20px" }}>
+              <div style={{ background: S.card, cursor: "pointer", borderTop: "1.5px dashed rgba(26,26,26,0.12)" }}>
                 {!isOpen && day.warn && (
                   <div style={{ display: "flex", alignItems: "center", gap: 8, margin: "12px 22px 4px", padding: "9px 12px", background: "#FFF8EB", borderRadius: 10 }}>
                     <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#B87A00", flexShrink: 0 }} />
@@ -471,7 +471,7 @@ function TripPage({ checked, onToggle }) {
                                   <AddressInput placeholder="Location (optional)..." value={editActLoc} onChange={setEditActLoc}
                                     style={{ ...inputStyle, marginBottom: 6, fontSize: 14, padding: "6px 10px" }} />
                                   <div style={{ display: "flex", gap: 6 }}>
-                                    <div onClick={() => handleEditSave(day.id, act.id)} style={{ flex: 1, background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "8px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Save</div>
+                                    <div onClick={() => handleEditSave(day.id, act.id)} style={{ flex: 1, background: S.dark, color: "#F0F1FF", borderRadius: 8, padding: "8px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Save</div>
                                     <div onClick={() => setEditingAct(null)} style={{ flex: 1, background: S.faint, borderRadius: 8, padding: "8px 0", fontSize: 13, cursor: "pointer", textAlign: "center", opacity: 0.5 }}>Cancel</div>
                                   </div>
                                 </div>
@@ -509,13 +509,13 @@ function TripPage({ checked, onToggle }) {
                                   }}>
                                     <div onClick={() => { setEditingAct(act.id); setEditActName(act.name); setEditActTime(act.time || ""); setEditActLoc(act.location || ""); setActiveMenu(null); }}
                                       style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
-                                      <span style={{ fontSize: 15, color: "#F0F0F0" }}>Edit</span>
-                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                      <span style={{ fontSize: 15, color: "#F0F1FF" }}>Edit</span>
+                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F1FF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
                                     </div>
                                     <div onClick={() => { setSkipped(s => ({ ...s, [act.id]: !s[act.id] })); setActiveMenu(null); }}
                                       style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
-                                      <span style={{ fontSize: 15, color: "#F0F0F0" }}>{isSkipped ? "Undo Skip" : "Skip"}</span>
-                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 3l5 5-5 5" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                      <span style={{ fontSize: 15, color: "#F0F1FF" }}>{isSkipped ? "Undo Skip" : "Skip"}</span>
+                                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M8 3l5 5-5 5" stroke="#F0F1FF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
                                     </div>
                                     {isCustom ? (
                                       <div onClick={() => { setCustomActs(prev => ({ ...prev, [day.id]: (prev[day.id] || []).filter(a => a.id !== act.id) })); setActiveMenu(null); }}
@@ -549,7 +549,7 @@ function TripPage({ checked, onToggle }) {
                           onChange={setNewActLoc}
                           style={{ ...inputStyle, marginBottom: 8 }} />
                         <div style={{ display: "flex", gap: 8 }}>
-                          <div onClick={() => handleAddAct(day.id)} style={{ flex: 1, background: S.dark, color: "#F0F0F0", borderRadius: 10, padding: "10px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Add</div>
+                          <div onClick={() => handleAddAct(day.id)} style={{ flex: 1, background: S.dark, color: "#F0F1FF", borderRadius: 10, padding: "10px 0", fontSize: 13, fontWeight: 700, cursor: "pointer", textAlign: "center" }}>Add</div>
                           <div onClick={() => { setAddingTo(null); setNewActLoc(""); setNewActTime(""); }} style={{ flex: 1, background: S.faint, color: S.text, borderRadius: 10, padding: "10px 0", fontSize: 13, cursor: "pointer", textAlign: "center", opacity: 0.5 }}>Cancel</div>
                         </div>
                       </div>
@@ -601,22 +601,22 @@ function TodoPage({ checked, onToggle }) {
         return (
           <div key={group.id} style={{ marginBottom: 20 }}>
             <div style={{ position: "relative" }}>
-              <div style={{ borderRadius: 20, background: S.dark }}>
+              <div style={{ borderRadius: 20, background: "#FFFFFF" }}>
                 <div style={{ padding: "16px 22px 18px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35, marginBottom: 6 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1A1A1A", opacity: 0.5, marginBottom: 6 }}>
                         {group.emoji} {group.subNote || group.sublabel}
                       </div>
-                      <div style={{ fontSize: 22, fontWeight: 700, color: "#F0F0F0", letterSpacing: -0.8 }}>{group.label}</div>
+                      <div style={{ fontSize: 22, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.8 }}>{group.label}</div>
                     </div>
                     <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: 26, fontWeight: 700, color: "#F0F0F0", letterSpacing: -1 }}>{done}/{total}</div>
-                      <div style={{ fontSize: 10, fontWeight: 700, color: "#F0F0F0", opacity: 0.3, letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 }}>done</div>
+                      <div style={{ fontSize: 26, fontWeight: 700, color: "#1A1A1A", letterSpacing: -1 }}>{done}/{total}</div>
+                      <div style={{ fontSize: 10, fontWeight: 700, color: "#F0F1FF", opacity: 0.3, letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 }}>done</div>
                     </div>
                   </div>
                 </div>
-                <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(240,240,240,0.15)", borderRadius: "0 0 20px 20px" }}>
+                <div style={{ background: S.card, padding: "0 22px", borderTop: "1.5px dashed rgba(26,26,26,0.12)", borderRadius: "0 0 20px 20px" }}>
                   {group.items.map((item, idx) => {
                     const isChecked = !!checked[item.id];
                     return (
@@ -633,7 +633,7 @@ function TodoPage({ checked, onToggle }) {
                                   }}
                                   style={{ ...inputStyle, marginBottom: 0, flex: 1, fontSize: 14, padding: "5px 10px" }} />
                                 <div onClick={() => { setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.map(i => i.id === item.id ? { ...i, name: editTodoName.trim() } : i) } : g)); setEditingTodo(null); }}
-                                  style={{ background: S.dark, color: "#F0F0F0", borderRadius: 8, padding: "6px 12px", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Save</div>
+                                  style={{ background: S.dark, color: "#F0F1FF", borderRadius: 8, padding: "6px 12px", fontSize: 12, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Save</div>
                                 <div onClick={() => setEditingTodo(null)}
                                   style={{ background: S.faint, borderRadius: 8, padding: "6px 8px", fontSize: 12, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
                               </div>
@@ -657,8 +657,8 @@ function TodoPage({ checked, onToggle }) {
                               }}>
                                 <div onClick={() => { setEditingTodo(item.id); setEditTodoName(item.name); setActiveMenuTodo(null); }}
                                   style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer", borderBottom: "0.5px solid rgba(255,255,255,0.08)" }}>
-                                  <span style={{ fontSize: 15, color: "#F0F0F0" }}>Edit</span>
-                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F0F0" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
+                                  <span style={{ fontSize: 15, color: "#F0F1FF" }}>Edit</span>
+                                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M11 2l3 3L5 14H2v-3L11 2z" stroke="#F0F1FF" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" opacity="0.7"/></svg>
                                 </div>
                                 <div onClick={() => { setTodoGroups(prev => prev.map(g => g.id === group.id ? { ...g, items: g.items.filter(i => i.id !== item.id) } : g)); setActiveMenuTodo(null); }}
                                   style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", cursor: "pointer" }}>
@@ -678,7 +678,7 @@ function TodoPage({ checked, onToggle }) {
                         onChange={e => setNewItem(e.target.value)}
                         onKeyDown={e => { if (e.key === "Enter") handleAdd(group.id); if (e.key === "Escape") setAddingTo(null); }}
                         style={{ ...inputStyle, marginBottom: 0, flex: 1 }} />
-                      <div onClick={() => handleAdd(group.id)} style={{ background: S.dark, color: "#F0F0F0", borderRadius: 12, padding: "10px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Add</div>
+                      <div onClick={() => handleAdd(group.id)} style={{ background: S.dark, color: "#F0F1FF", borderRadius: 12, padding: "10px 16px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0 }}>Add</div>
                       <div onClick={() => setAddingTo(null)} style={{ background: S.faint, color: S.text, borderRadius: 12, padding: "10px 12px", fontSize: 13, fontWeight: 700, cursor: "pointer", flexShrink: 0, opacity: 0.5 }}>✕</div>
                     </div>
                   ) : (
@@ -803,27 +803,27 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
             <input type="number" value={budgetInput} onChange={e => setBudgetInput(e.target.value)}
               style={{ ...inputStyle, marginBottom: 0, flex: 1, fontSize: 26, fontWeight: 800, letterSpacing: -1 }} autoFocus />
             <div onClick={() => { const v = Number(budgetInput); if (v > 0) onSetBudget(v); setShowBudgetEdit(false); }}
-              style={{ background: S.dark, color: "#F0F0F0", borderRadius: 14, padding: "0 22px", fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center" }}>Save</div>
+              style={{ background: S.dark, color: "#F0F1FF", borderRadius: 14, padding: "0 22px", fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center" }}>Save</div>
           </div>
         </div>
       ) : (
-        <div style={{ background: S.dark, borderRadius: 20, padding: "20px 22px", marginBottom: 12 }}>
+        <div style={{ background: "#FFFFFF", borderRadius: 20, padding: "20px 22px", marginBottom: 12, border: "1px solid rgba(26,26,26,0.08)" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18 }}>
             <div>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: "#F0F0F0", opacity: 0.35, marginBottom: 10 }}>Total Budget</div>
-              <div style={{ fontSize: 36, fontWeight: 800, color: "#F0F0F0", letterSpacing: -1.5, lineHeight: 1, marginBottom: 10 }}>NZD {budget.toLocaleString()}</div>
-              <div style={{ fontSize: 12, fontWeight: 500, color: "#F0F0F0", opacity: 0.4, marginBottom: 2 }}>Remaining</div>
-              <div style={{ fontSize: 20, fontWeight: 500, color: "#F0F0F0", opacity: 0.65, letterSpacing: -0.5 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.45, marginBottom: 10 }}>Total Budget</div>
+              <div style={{ fontSize: 36, fontWeight: 800, color: S.text, letterSpacing: -1.5, lineHeight: 1, marginBottom: 10 }}>NZD {budget.toLocaleString()}</div>
+              <div style={{ fontSize: 12, fontWeight: 500, color: S.text, opacity: 0.45, marginBottom: 2 }}>Remaining</div>
+              <div style={{ fontSize: 20, fontWeight: 500, color: S.text, opacity: 0.7, letterSpacing: -0.5 }}>
                 {remaining < 0 ? "-" : ""}${Math.abs(remaining).toLocaleString()}
               </div>
             </div>
             <div onClick={(e) => { e.stopPropagation(); setShowBudgetEdit(true); setBudgetInput(String(budget)); }}
-              style={{ background: "rgba(240,240,240,0.12)", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 600, color: "#F0F0F0", opacity: 0.7, cursor: "pointer", flexShrink: 0, marginTop: 2 }}>
+              style={{ background: "rgba(26,26,26,0.06)", borderRadius: 20, padding: "6px 14px", fontSize: 12, fontWeight: 600, color: S.text, opacity: 0.6, cursor: "pointer", flexShrink: 0, marginTop: 2 }}>
               Edit ✎
             </div>
           </div>
-          <div style={{ height: 5, background: "rgba(240,240,240,0.12)", borderRadius: 3 }}>
-            <div style={{ width: spentPct + "%", height: "100%", background: "rgba(240,240,240,0.55)", borderRadius: 3 }} />
+          <div style={{ height: 5, background: "rgba(26,26,26,0.08)", borderRadius: 3 }}>
+            <div style={{ width: spentPct + "%", height: "100%", background: S.dark, borderRadius: 3 }} />
           </div>
         </div>
       )}
@@ -869,7 +869,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
           height: 52, fontSize: 14, fontWeight: 600, marginBottom: 10, cursor: "pointer",
         }}>
           <div style={{ width: 24, height: 24, borderRadius: "50%", background: S.dark, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#F0F0F0" strokeWidth="1.8" strokeLinecap="round"/></svg>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#F0F1FF" strokeWidth="1.8" strokeLinecap="round"/></svg>
         </div>
           Add Expense
         </div>
@@ -897,7 +897,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
                 <div key={p} onClick={() => setForm(f => ({ ...f, paidBy: p }))} style={{
                   fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 20, cursor: "pointer",
                   background: form.paidBy === p ? S.dark : S.faint,
-                  color: form.paidBy === p ? "#F0F0F0" : S.text,
+                  color: form.paidBy === p ? "#F0F1FF" : S.text,
                   opacity: form.paidBy === p ? 1 : 0.55,
                 }}>{p}</div>
               ))}
@@ -910,7 +910,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
                 <div key={mode} onClick={() => handleSplitMode(mode)} style={{
                   flex: 1, textAlign: "center", padding: "9px 0", borderRadius: 10, cursor: "pointer", fontSize: 13, fontWeight: 600,
                   background: splitMode === mode ? S.dark : "transparent",
-                  color: splitMode === mode ? "#F0F0F0" : S.text,
+                  color: splitMode === mode ? "#F0F1FF" : S.text,
                   opacity: splitMode === mode ? 1 : 0.45,
                 }}>{mode === "equal" ? "Split equally" : "Custom amounts"}</div>
               ))}
@@ -941,7 +941,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
           </div>
           <input placeholder="Note (optional)" value={form.note} onChange={e => setForm(f => ({ ...f, note: e.target.value }))} style={{ ...inputStyle, marginBottom: 14 }} />
           <div style={{ display: "flex", gap: 10 }}>
-            <div onClick={handleAdd} style={{ flex: 1, background: S.dark, color: "#F0F0F0", borderRadius: 12, height: 48, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Save</div>
+            <div onClick={handleAdd} style={{ flex: 1, background: S.dark, color: "#F0F1FF", borderRadius: 12, height: 48, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, cursor: "pointer" }}>Save</div>
             <div onClick={() => setShowForm(false)} style={{ flex: 1, background: S.faint, color: S.text, borderRadius: 12, height: 48, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 700, cursor: "pointer", opacity: 0.6 }}>Cancel</div>
           </div>
         </div>
@@ -1028,7 +1028,7 @@ export default function App() {
                 fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase",
                 padding: "9px 0", borderRadius: 18, cursor: "pointer",
                 background: tabIndex === i ? S.dark : "transparent",
-                color: tabIndex === i ? "#F0F0F0" : S.text,
+                color: tabIndex === i ? "#FFFFFF" : S.text,
                 opacity: tabIndex === i ? 1 : 0.35,
                 transition: "background 0.15s, color 0.15s",
               }}>{t}</div>
