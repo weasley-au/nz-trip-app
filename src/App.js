@@ -170,13 +170,14 @@ function buildDefaultChecked() {
 }
 
 const S = {
-  bg: "#F2F2F2",
+  bg: "#E8E8EE",
   card: "#FFFFFF",
   dark: "#1A1A1A",
   text: "#1A1A1A",
-  muted: "rgba(26,26,26,0.45)",
+  muted: "rgba(26,26,26,0.5)",
   faint: "rgba(26,26,26,0.06)",
-  lightBg: "#F7F7F7",
+  lightBg: "#FFFFFF",
+  accent: "#1A1A1A",
 };
 
 const inputStyle = {
@@ -185,7 +186,7 @@ const inputStyle = {
   marginBottom: 10, outline: "none", fontFamily: "inherit",
 };
 
-function Notch({ left, top, size = 22 }) {
+function Notch({ left, top, size = 26 }) {
   return (
     <div style={{
       position: "absolute", width: size, height: size,
@@ -205,7 +206,7 @@ function Checkbox({ checked, onToggle }) {
     }}>
       {checked && (
         <svg width="10" height="7" viewBox="0 0 10 7" fill="none">
-          <path d="M1 3.5L4 6.5L9 1" stroke="#F2F2F2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M1 3.5L4 6.5L9 1" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )}
     </div>
@@ -214,7 +215,7 @@ function Checkbox({ checked, onToggle }) {
 
 function Overline({ children }) {
   return (
-    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: S.text, opacity: 0.35, padding: "8px 2px 12px" }}>
+    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase", color: S.text, opacity: 0.65, padding: "8px 2px 12px" }}>
       {children}
     </div>
   );
@@ -365,8 +366,8 @@ function TripPage({ checked, onToggle }) {
 
   return (
     <div style={{ padding: "14px 18px 56px" }}>
-      <div style={{ position: "relative", marginBottom: 12 }}>
-        <div style={{ background: S.card, borderRadius: 20, overflow: "hidden" }}>
+      <div style={{ position: "relative", marginBottom: 16 }}>
+        <div style={{ background: S.card, borderRadius: 28, overflow: "hidden" }}>
           <div style={{ padding: "20px 22px" }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.3, marginBottom: 18 }}>Jun 17–23 · 2026</div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
@@ -383,7 +384,7 @@ function TripPage({ checked, onToggle }) {
               </div>
             </div>
           </div>
-          <div style={{ padding: "18px 22px 20px", background: S.lightBg, borderTop: "1.5px dashed rgba(26,26,26,0.12)" }}>
+          <div style={{ padding: "18px 22px 20px", borderTop: "1.5px dashed rgba(26,26,26,0.12)" }}>
             <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.3, marginBottom: 4 }}>Trip Progress</div>
             <div style={{ fontSize: 13, color: S.text, opacity: 0.4, marginBottom: 14 }}>{doneActs} of {totalActs} activities completed</div>
             <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
@@ -405,17 +406,17 @@ function TripPage({ checked, onToggle }) {
         const isOpen = expanded[day.id];
         const dayDone = day.activities.filter(a => checked[a.id]).length;
         return (
-          <div key={day.id} style={{ position: "relative", marginBottom: 12 }}>
-            <div style={{ borderRadius: 20, background: "#FFFFFF" }}
+          <div key={day.id} style={{ position: "relative", marginBottom: 16 }}>
+            <div style={{ borderRadius: 28, background: S.card, overflow: "hidden" }}
               onClick={() => setExpanded(e => ({ ...e, [day.id]: !e[day.id] }))}>
-              <div style={{ padding: "18px 22px 20px", cursor: "pointer", borderRadius: "20px 20px 0 0" }}>
+              <div style={{ padding: "20px 22px 22px", cursor: "pointer" }}>
                 <div style={{ marginBottom: 14 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
                     <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F1FF", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1A1A1A", opacity: 0.5 }}>{dayDone}/{day.activities.length} done</div>
+                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: S.text, opacity: 0.7 }}>{dayDone}/{day.activities.length} done</div>
                   </div>
-                  <div style={{ fontSize: 26, fontWeight: 700, color: "#1A1A1A", letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
-                  <div style={{ fontSize: 13, color: "#1A1A1A", opacity: 0.5 }}>{day.meta}</div>
+                  <div style={{ fontSize: 26, fontWeight: 700, color: S.text, letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
+                  <div style={{ fontSize: 13, color: S.text, opacity: 0.7 }}>{day.meta}</div>
                   {day.accom && (
                     <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
                       onClick={e => e.stopPropagation()}
@@ -461,7 +462,7 @@ function TripPage({ checked, onToggle }) {
                           <div style={{ display: "flex", alignItems: "flex-start", gap: 14, padding: "13px 0" }}>
                             <Checkbox checked={!isSkipped && !!checked[act.id]} onToggle={() => !isSkipped && onToggle(act.id)} />
                             <div style={{ flex: 1, minWidth: 0 }}>
-                              <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.32, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
+                              <div style={{ fontSize: 10, fontWeight: 700, color: S.text, opacity: 0.6, letterSpacing: "0.08em", textTransform: "uppercase", marginBottom: 3 }}>{act.time}</div>
                               {isEditingThis ? (
                                 <div style={{ marginBottom: 4 }}>
                                   <input autoFocus placeholder="Activity name..." value={editActName} onChange={e => setEditActName(e.target.value)}
@@ -487,7 +488,7 @@ function TripPage({ checked, onToggle }) {
                                 <a href={`https://maps.google.com/?q=${encodeURIComponent(act.location)}`}
                                   target="_blank" rel="noopener noreferrer"
                                   onClick={e => e.stopPropagation()}
-                                  style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.35, textDecoration: "none" }}>
+                                  style={{ display: "inline-flex", alignItems: "center", gap: 3, marginTop: 4, fontSize: 11, color: S.text, opacity: 0.65, textDecoration: "none" }}>
                                   📍 {act.location}
                                 </a>
                               )}
@@ -504,7 +505,7 @@ function TripPage({ checked, onToggle }) {
                                 {activeMenu === act.id && (
                                   <div onClick={e => e.stopPropagation()} style={{
                                     position: "absolute", right: 0, top: 32, zIndex: 100,
-                                    background: "#2A2A2A", borderRadius: 14, overflow: "hidden",
+                                    background: "#1A1A1A", borderRadius: 14, overflow: "hidden",
                                     minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
                                   }}>
                                     <div onClick={() => { setEditingAct(act.id); setEditActName(act.name); setEditActTime(act.time || ""); setEditActLoc(act.location || ""); setActiveMenu(null); }}
@@ -559,7 +560,7 @@ function TripPage({ checked, onToggle }) {
                         <div style={{ width: 22, height: 22, borderRadius: "50%", border: "1.5px dashed rgba(26,26,26,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                           <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="rgba(26,26,26,0.35)" strokeWidth="1.5" strokeLinecap="round"/></svg>
                         </div>
-                        <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.35 }}>Add a stop</div>
+                        <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.65 }}>Add a stop</div>
                       </div>
                     )}
                     <div style={{ height: 4 }} />
@@ -599,9 +600,9 @@ function TodoPage({ checked, onToggle }) {
         const total = group.items.length;
         const done = group.items.filter(i => checked[i.id]).length;
         return (
-          <div key={group.id} style={{ marginBottom: 20 }}>
+          <div key={group.id} style={{ marginBottom: 24 }}>
             <div style={{ position: "relative" }}>
-              <div style={{ borderRadius: 20, background: "#FFFFFF" }}>
+              <div style={{ borderRadius: 28, background: S.card, overflow: "hidden" }}>
                 <div style={{ padding: "16px 22px 18px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
@@ -652,7 +653,7 @@ function TodoPage({ checked, onToggle }) {
                             {activeMenuTodo === item.id && (
                               <div style={{
                                 position: "absolute", right: 0, bottom: 36, zIndex: 100,
-                                background: "#2A2A2A", borderRadius: 14, overflow: "hidden",
+                                background: "#1A1A1A", borderRadius: 14, overflow: "hidden",
                                 minWidth: 160, boxShadow: "0 8px 24px rgba(0,0,0,0.18)",
                               }}>
                                 <div onClick={() => { setEditingTodo(item.id); setEditTodoName(item.name); setActiveMenuTodo(null); }}
@@ -687,7 +688,7 @@ function TodoPage({ checked, onToggle }) {
                       <div style={{ width: 22, height: 22, borderRadius: "50%", border: "1.5px dashed rgba(26,26,26,0.25)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="rgba(26,26,26,0.35)" strokeWidth="1.5" strokeLinecap="round"/></svg>
                       </div>
-                      <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.35 }}>Add item</div>
+                      <div style={{ fontSize: 15, fontWeight: 500, color: S.text, opacity: 0.65 }}>Add item</div>
                     </div>
                   )}
                 </div>
@@ -724,7 +725,7 @@ function SplitCalculator({ expenses }) {
       </div>
       {open && (
         <div style={{ background: S.card, borderRadius: 16, padding: "16px 20px" }}>
-          <div style={{ fontSize: 11, fontWeight: 700, color: S.text, opacity: 0.35, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Each person's share: NZD {Math.round(share).toLocaleString()}</div>
+          <div style={{ fontSize: 11, fontWeight: 700, color: S.text, opacity: 0.65, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 14 }}>Each person's share: NZD {Math.round(share).toLocaleString()}</div>
           {PEOPLE.map(p => {
             const bal = balances[p];
             const isOwed = bal > 0.5;
@@ -732,7 +733,7 @@ function SplitCalculator({ expenses }) {
             return (
               <div key={p} style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 12 }}>
                 <div style={{ fontSize: 15, fontWeight: 600, color: S.text, flex: 1 }}>{p}</div>
-                <div style={{ fontSize: 13, color: S.text, opacity: 0.35 }}>paid ${(paid[p] || 0).toLocaleString()}</div>
+                <div style={{ fontSize: 13, color: S.text, opacity: 0.65 }}>paid ${(paid[p] || 0).toLocaleString()}</div>
                 <div style={{
                   fontSize: 13, fontWeight: 700, padding: "4px 12px", borderRadius: 20,
                   background: isOwed ? "#EDFAF3" : isOwes ? "#FFF8EB" : S.faint,
@@ -807,7 +808,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
           </div>
         </div>
       ) : (
-        <div style={{ background: "#FFFFFF", borderRadius: 20, padding: "20px 22px", marginBottom: 12, border: "1px solid rgba(26,26,26,0.08)" }}>
+        <div style={{ background: S.card, borderRadius: 28, padding: "20px 22px", marginBottom: 12 }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 18 }}>
             <div>
               <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.45, marginBottom: 10 }}>Total Budget</div>
@@ -829,8 +830,8 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
       )}
 
       {/* Summary */}
-      <div style={{ position: "relative", marginBottom: 12 }}>
-        <div style={{ background: S.card, borderRadius: 20, overflow: "hidden" }}>
+      <div style={{ position: "relative", marginBottom: 16 }}>
+        <div style={{ background: S.card, borderRadius: 28, overflow: "hidden" }}>
           <div style={{ padding: "20px 22px" }}>
             
             <div style={{ marginBottom: 18 }}>
@@ -854,7 +855,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
               );
             })}
             {EXPENSE_CATS.filter(c => catTotals[c] > 0).length === 0 && (
-              <div style={{ fontSize: 13, color: S.text, opacity: 0.35, fontStyle: "italic", paddingBottom: 6 }}>No expenses yet</div>
+              <div style={{ fontSize: 13, color: S.text, opacity: 0.65, fontStyle: "italic", paddingBottom: 6 }}>No expenses yet</div>
             )}
           </div>
         </div>
@@ -955,7 +956,7 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
         const st = CAT_STYLE[exp.cat] || CAT_STYLE.Other;
         return (
           <div key={exp.id} style={{ position: "relative", marginBottom: 10 }}>
-            <div style={{ background: S.card, borderRadius: 16, overflow: "hidden" }}>
+            <div style={{ background: S.card, borderRadius: 24, overflow: "hidden" }}>
               <div style={{ padding: "14px 18px 16px", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                 <div style={{ flex: 1, minWidth: 0, marginRight: 14 }}>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: 5, fontSize: 11, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", padding: "4px 10px", borderRadius: 20, marginBottom: 8, background: st.bg, color: st.color }}>
@@ -1014,7 +1015,7 @@ export default function App() {
 
   return (
     <div
-      style={{ minHeight: "100vh", width: "100%", background: S.bg, fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif", display: "flex", flexDirection: "column" }}
+      style={{ minHeight: "100vh", width: "100%", background: S.bg, fontFamily: "'Lora', Georgia, serif", display: "flex", flexDirection: "column" }}
       onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}
     >
       <div style={{ position: "sticky", top: 0, zIndex: 100, background: S.bg, borderBottom: "1px solid rgba(26,26,26,0.08)", display: "flex", justifyContent: "center" }}>
