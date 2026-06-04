@@ -172,12 +172,14 @@ function buildDefaultChecked() {
 const S = {
   bg: "#E8E8EE",
   card: "#FFFFFF",
-  dark: "#1A1A1A",
-  text: "#1A1A1A",
-  muted: "rgba(26,26,26,0.5)",
-  faint: "rgba(26,26,26,0.06)",
+  dark: "#1B1B6E",
+  text: "#1B1B6E",
+  muted: "rgba(27,27,110,0.55)",
+  faint: "rgba(27,27,110,0.06)",
   lightBg: "#FFFFFF",
-  accent: "#1A1A1A",
+  accent: "#1B1B6E",
+  btnBg: "#E2E2EA",
+  btnText: "#1B1B6E",
 };
 
 const inputStyle = {
@@ -200,13 +202,13 @@ function Checkbox({ checked, onToggle }) {
   return (
     <div onClick={onToggle} style={{
       width: 22, height: 22, borderRadius: "50%", flexShrink: 0, cursor: "pointer",
-      border: checked ? "2px solid #1E1B4B" : "1.5px solid rgba(26,26,26,0.2)",
-      background: checked ? "#1E1B4B" : "transparent",
+      border: checked ? "1.5px solid rgba(27,27,110,0.3)" : "1.5px solid rgba(27,27,110,0.2)",
+      background: checked ? S.btnBg : "transparent",
       display: "flex", alignItems: "center", justifyContent: "center",
     }}>
       {checked && (
         <svg width="10" height="7" viewBox="0 0 10 7" fill="none">
-          <path d="M1 3.5L4 6.5L9 1" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M1 3.5L4 6.5L9 1" stroke="#1B1B6E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )}
     </div>
@@ -897,8 +899,8 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
               {PEOPLE.map(p => (
                 <div key={p} onClick={() => setForm(f => ({ ...f, paidBy: p }))} style={{
                   fontSize: 13, fontWeight: 600, padding: "8px 16px", borderRadius: 20, cursor: "pointer",
-                  background: form.paidBy === p ? S.dark : S.faint,
-                  color: form.paidBy === p ? "#F0F1FF" : S.text,
+                  background: form.paidBy === p ? S.btnBg : S.faint,
+                  color: form.paidBy === p ? S.btnText : S.text,
                   opacity: form.paidBy === p ? 1 : 0.55,
                 }}>{p}</div>
               ))}
@@ -910,8 +912,8 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
               {["equal", "custom"].map(mode => (
                 <div key={mode} onClick={() => handleSplitMode(mode)} style={{
                   flex: 1, textAlign: "center", padding: "9px 0", borderRadius: 10, cursor: "pointer", fontSize: 13, fontWeight: 600,
-                  background: splitMode === mode ? S.dark : "transparent",
-                  color: splitMode === mode ? "#F0F1FF" : S.text,
+                  background: splitMode === mode ? S.btnBg : "transparent",
+                  color: splitMode === mode ? S.btnText : S.text,
                   opacity: splitMode === mode ? 1 : 0.45,
                 }}>{mode === "equal" ? "Split equally" : "Custom amounts"}</div>
               ))}
@@ -1018,18 +1020,18 @@ export default function App() {
       style={{ minHeight: "100vh", width: "100%", background: S.bg, fontFamily: "'Lora', Georgia, serif", display: "flex", flexDirection: "column" }}
       onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}
     >
-      <div style={{ position: "sticky", top: 0, zIndex: 100, background: S.bg, borderBottom: "1px solid rgba(26,26,26,0.08)", display: "flex", justifyContent: "center" }}>
+      <div style={{ position: "sticky", top: 0, zIndex: 100, background: S.bg, borderBottom: "1px solid rgba(27,27,110,0.08)", display: "flex", justifyContent: "center" }}>
         <div style={{ width: "100%", maxWidth: 480, padding: "0 18px" }}>
         <div style={{ padding: "16px 0 0" }}>
           <div style={{ fontSize: 34, fontWeight: 800, color: S.text, letterSpacing: -1.5, marginBottom: 14 }}>NZ 要幹嘛 🇳🇿</div>
-          <div style={{ display: "flex", background: "rgba(26,26,26,0.07)", borderRadius: 22, padding: 4, gap: 2, marginBottom: 12 }}>
+          <div style={{ display: "flex", background: "#FFFFFF", borderRadius: 22, padding: 4, gap: 2, marginBottom: 12 }}>
             {TABS.map((t, i) => (
               <div key={t} onClick={() => setTabIndex(i)} style={{
                 flex: 1, textAlign: "center",
                 fontSize: 12, fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase",
                 padding: "9px 0", borderRadius: 18, cursor: "pointer",
-                background: tabIndex === i ? S.dark : "transparent",
-                color: tabIndex === i ? "#FFFFFF" : S.text,
+                background: tabIndex === i ? S.btnBg : "transparent",
+                color: tabIndex === i ? S.btnText : S.text,
                 opacity: tabIndex === i ? 1 : 0.35,
                 transition: "background 0.15s, color 0.15s",
               }}>{t}</div>
