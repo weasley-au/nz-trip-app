@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+\import { useState, useEffect, useCallback, useRef } from "react";
 
 const PEOPLE = ["Weasley", "Amy", "Joanne", "Yume"];
 const TABS = ["Trip", "To-do", "Budget"];
@@ -182,6 +182,15 @@ const S = {
   btnText: "#1B1B6E",
 };
 
+const T = {
+  display: { fontSize: 40, fontWeight: 800, letterSpacing: -2 },
+  heading: { fontSize: 24, fontWeight: 700, letterSpacing: -0.5 },
+  subhead: { fontSize: 16, fontWeight: 600, letterSpacing: -0.2 },
+  body:    { fontSize: 14, fontWeight: 400 },
+  label:   { fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" },
+  micro:   { fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" },
+};
+
 const inputStyle = {
   width: "100%", background: "rgba(26,26,26,0.05)", border: "none", borderRadius: 12,
   padding: "11px 14px", fontSize: 15, fontWeight: 500, color: "#1A1A1A",
@@ -227,8 +236,10 @@ function Overline({ children }) {
 function AddressInput({ value, onChange, placeholder, style }) {
   const [suggestions, setSuggestions] = useState([]);
   const [showSug, setShowSug] = useState(false);
+  const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
   const debounceRef = useRef(null);
   const serviceRef = useRef(null);
+  const inputRef = useRef(null);
 
   const getService = () => {
     if (!serviceRef.current && window.google?.maps?.places?.AutocompleteService) {
@@ -249,9 +260,11 @@ function AddressInput({ value, onChange, placeholder, style }) {
           if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
             setSuggestions(predictions.map(p => p.description));
             setShowSug(true);
-          } else {
-            setSuggestions([]); setShowSug(false);
-          }
+            if (inputRef.current) {
+              const rect = inputRef.current.getBoundingClientRect();
+              setDropdownPos({ top: rect.bottom + window.scrollY + 4, left: rect.left, width: rect.width });
+            }
+          } else { setSuggestions([]); setShowSug(false); }
         }
       );
     }, 300);
@@ -260,6 +273,7 @@ function AddressInput({ value, onChange, placeholder, style }) {
   return (
     <div style={{ position: "relative", marginBottom: style?.marginBottom }}>
       <input
+        ref={inputRef}
         placeholder={placeholder}
         value={value}
         onChange={e => { onChange(e.target.value); fetchSuggestions(e.target.value); }}
@@ -268,14 +282,18 @@ function AddressInput({ value, onChange, placeholder, style }) {
       />
       {showSug && suggestions.length > 0 && (
         <div style={{
-          position: "absolute", left: 0, right: 0, top: "calc(100% + 4px)", zIndex: 200,
+          position: "fixed",
+          top: dropdownPos.top,
+          left: dropdownPos.left,
+          width: dropdownPos.width,
+          zIndex: 9999,
           background: "#FFF", borderRadius: 12, boxShadow: "0 4px 20px rgba(0,0,0,0.12)",
           overflow: "hidden", border: "1px solid #EEEEEE",
         }}>
           {suggestions.map((s, i) => (
             <div key={i}
               onMouseDown={() => { onChange(s); setSuggestions([]); setShowSug(false); }}
-              style={{ padding: "11px 14px", fontSize: 13, color: "#1A1A1A", borderBottom: i < suggestions.length - 1 ? "1px solid #F5F5F5" : "none", cursor: "pointer" }}>
+              style={{ padding: "11px 14px", fontSize: 13, color: S.text, borderBottom: i < suggestions.length - 1 ? "1px solid #F5F5F5" : "none", cursor: "pointer" }}>
               📍 {s}
             </div>
           ))}
@@ -413,11 +431,11 @@ function TripPage({ checked, onToggle }) {
               onClick={() => setExpanded(e => ({ ...e, [day.id]: !e[day.id] }))}>
               <div style={{ padding: "20px 22px 22px", cursor: "pointer" }}>
                 <div style={{ marginBottom: 14 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#F0F1FF", opacity: 0.35 }}>{day.dayNum} · {day.date}</div>
-                    <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: S.text, opacity: 0.7 }}>{dayDone}/{day.activities.length} done</div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.45 }}>{day.dayNum} · {day.date}</div>
+                    <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", color: S.text, opacity: 0.45 }}>{dayDone}/{day.activities.length} done</div>
                   </div>
-                  <div style={{ fontSize: 26, fontWeight: 700, color: S.text, letterSpacing: -1, lineHeight: 1, marginBottom: 5 }}>{day.name}</div>
+                  <div style={{ fontSize: 26, fontWeight: 700, color: S.text, letterSpacing: -0.5, lineHeight: 1, marginBottom: 4 }}>{day.name}</div>
                   <div style={{ fontSize: 13, color: S.text, opacity: 0.7 }}>{day.meta}</div>
                   {day.accom && (
                     <a href={day.accomUrl} target="_blank" rel="noopener noreferrer"
@@ -608,13 +626,13 @@ function TodoPage({ checked, onToggle }) {
                 <div style={{ padding: "16px 22px 18px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1A1A1A", opacity: 0.5, marginBottom: 6 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: S.text, opacity: 0.5, marginBottom: 6 }}>
                         {group.emoji} {group.subNote || group.sublabel}
                       </div>
-                      <div style={{ fontSize: 22, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.8 }}>{group.label}</div>
+                      <div style={{ fontSize: 22, fontWeight: 700, color: S.text, letterSpacing: -0.8 }}>{group.label}</div>
                     </div>
                     <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: 26, fontWeight: 700, color: "#1A1A1A", letterSpacing: -1 }}>{done}/{total}</div>
+                      <div style={{ fontSize: 26, fontWeight: 700, color: S.text, letterSpacing: -1 }}>{done}/{total}</div>
                       <div style={{ fontSize: 10, fontWeight: 700, color: "#F0F1FF", opacity: 0.3, letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 }}>done</div>
                     </div>
                   </div>
@@ -718,12 +736,11 @@ function SplitCalculator({ expenses }) {
   return (
     <div style={{ marginBottom: 10 }}>
       <div onClick={() => setOpen(o => !o)} style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
+        display: "flex", alignItems: "center", justifyContent: "center",
         background: S.faint, borderRadius: 14, padding: "0 18px",
         height: 52, cursor: "pointer", marginBottom: open ? 8 : 0,
       }}>
-        <div style={{ fontSize: 14, fontWeight: 600, color: S.text, opacity: 0.65 }}>💰 Split Calculator</div>
-        <div style={{ fontSize: 11, color: S.text, opacity: 0.3 }}>{open ? "▲" : "▼"}</div>
+        <div style={{ fontSize: 14, fontWeight: 600, color: S.text, opacity: 0.65 }}>Split Calculator</div>
       </div>
       {open && (
         <div style={{ background: S.card, borderRadius: 16, padding: "16px 20px" }}>
@@ -867,13 +884,10 @@ function BudgetPage({ expenses, onAdd, onDelete, budget, onSetBudget }) {
       {/* Add expense — same height as split calculator */}
       {!showForm ? (
         <div onClick={() => setShowForm(true)} style={{
-          display: "flex", alignItems: "center", justifyContent: "center", gap: 10,
+          display: "flex", alignItems: "center", justifyContent: "center",
           background: S.faint, color: S.text, borderRadius: 14,
-          height: 52, fontSize: 14, fontWeight: 600, marginBottom: 10, cursor: "pointer",
+          height: 52, fontSize: 14, fontWeight: 600, marginBottom: 10, cursor: "pointer", opacity: 0.65,
         }}>
-          <div style={{ width: 24, height: 24, borderRadius: "50%", background: S.dark, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1v8M1 5h8" stroke="#F0F1FF" strokeWidth="1.8" strokeLinecap="round"/></svg>
-        </div>
           Add Expense
         </div>
       ) : (
