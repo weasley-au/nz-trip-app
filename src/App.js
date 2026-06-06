@@ -182,14 +182,7 @@ const S = {
   btnText: "#1B1B6E",
 };
 
-const T = {
-  display: { fontSize: 40, fontWeight: 800, letterSpacing: -2 },
-  heading: { fontSize: 24, fontWeight: 700, letterSpacing: -0.5 },
-  subhead: { fontSize: 16, fontWeight: 600, letterSpacing: -0.2 },
-  body:    { fontSize: 14, fontWeight: 400 },
-  label:   { fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" },
-  micro:   { fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" },
-};
+
 
 const inputStyle = {
   width: "100%", background: "rgba(26,26,26,0.05)", border: "none", borderRadius: 12,
