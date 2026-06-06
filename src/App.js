@@ -1,4 +1,4 @@
-\import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 const PEOPLE = ["Weasley", "Amy", "Joanne", "Yume"];
 const TABS = ["Trip", "To-do", "Budget"];
