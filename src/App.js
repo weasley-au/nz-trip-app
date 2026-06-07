@@ -244,7 +244,7 @@ function AddressInput({ value, onChange, placeholder, style }) {
           includedRegionCodes: ["nz", "au"],
         });
         console.log("Places results:", results);
-        const texts = results.map(s => s.placePrediction.text.toString());
+        const texts = results.map(s => s.placePrediction.mainText?.text + (s.placePrediction.secondaryText?.text ? ", " + s.placePrediction.secondaryText.text : "") || s.placePrediction.text?.text || "");
         setSuggestions(texts);
         setShowSug(texts.length > 0);
         if (inputRef.current) {
