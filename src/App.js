@@ -182,14 +182,7 @@ const S = {
   btnText: "#1B1B6E",
 };
 
-const T = {
-  display: { fontSize: 40, fontWeight: 800, letterSpacing: -2 },
-  heading: { fontSize: 24, fontWeight: 700, letterSpacing: -0.5 },
-  subhead: { fontSize: 16, fontWeight: 600, letterSpacing: -0.2 },
-  body:    { fontSize: 14, fontWeight: 400 },
-  label:   { fontSize: 11, fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" },
-  micro:   { fontSize: 10, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" },
-};
+
 
 const inputStyle = {
   width: "100%", background: "rgba(26,26,26,0.05)", border: "none", borderRadius: 12,
@@ -238,35 +231,27 @@ function AddressInput({ value, onChange, placeholder, style }) {
   const [showSug, setShowSug] = useState(false);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
   const debounceRef = useRef(null);
-  const serviceRef = useRef(null);
   const inputRef = useRef(null);
-
-  const getService = () => {
-    if (!serviceRef.current && window.google?.maps?.places?.AutocompleteService) {
-      serviceRef.current = new window.google.maps.places.AutocompleteService();
-    }
-    return serviceRef.current;
-  };
 
   const fetchSuggestions = (input) => {
     if (!input || input.length < 3) { setSuggestions([]); setShowSug(false); return; }
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      const svc = getService();
-      if (!svc) return;
-      svc.getPlacePredictions(
-        { input, componentRestrictions: { country: ["nz", "au"] }, types: ["geocode", "establishment"] },
-        (predictions, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-            setSuggestions(predictions.map(p => p.description));
-            setShowSug(true);
-            if (inputRef.current) {
-              const rect = inputRef.current.getBoundingClientRect();
-              setDropdownPos({ top: rect.bottom + window.scrollY + 4, left: rect.left, width: rect.width });
-            }
-          } else { setSuggestions([]); setShowSug(false); }
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const { AutocompleteSuggestion } = await window.google.maps.importLibrary("places");
+        const { suggestions: results } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+          input,
+          includedRegionCodes: ["nz", "au"],
+        });
+        console.log("Places results:", results);
+        const texts = results.map(s => s.placePrediction.text.toString());
+        setSuggestions(texts);
+        setShowSug(texts.length > 0);
+        if (inputRef.current) {
+          const rect = inputRef.current.getBoundingClientRect();
+          setDropdownPos({ top: rect.bottom + window.scrollY + 4, left: rect.left, width: rect.width });
         }
-      );
+      } catch(e) { console.log("Places error:", e); setSuggestions([]); setShowSug(false); }
     }, 300);
   };
 
@@ -626,13 +611,13 @@ function TodoPage({ checked, onToggle }) {
                 <div style={{ padding: "16px 22px 18px" }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: "#1A1A1A", opacity: 0.5, marginBottom: 6 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: S.text, opacity: 0.5, marginBottom: 6 }}>
                         {group.emoji} {group.subNote || group.sublabel}
                       </div>
-                      <div style={{ fontSize: 22, fontWeight: 700, color: "#1A1A1A", letterSpacing: -0.8 }}>{group.label}</div>
+                      <div style={{ fontSize: 22, fontWeight: 700, color: S.text, letterSpacing: -0.8 }}>{group.label}</div>
                     </div>
                     <div style={{ textAlign: "right" }}>
-                      <div style={{ fontSize: 26, fontWeight: 700, color: "#1A1A1A", letterSpacing: -1 }}>{done}/{total}</div>
+                      <div style={{ fontSize: 26, fontWeight: 700, color: S.text, letterSpacing: -1 }}>{done}/{total}</div>
                       <div style={{ fontSize: 10, fontWeight: 700, color: "#F0F1FF", opacity: 0.3, letterSpacing: "0.1em", textTransform: "uppercase", marginTop: 3 }}>done</div>
                     </div>
                   </div>
