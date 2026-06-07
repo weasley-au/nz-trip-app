@@ -231,35 +231,26 @@ function AddressInput({ value, onChange, placeholder, style }) {
   const [showSug, setShowSug] = useState(false);
   const [dropdownPos, setDropdownPos] = useState({ top: 0, left: 0, width: 0 });
   const debounceRef = useRef(null);
-  const serviceRef = useRef(null);
   const inputRef = useRef(null);
-
-  const getService = () => {
-    if (!serviceRef.current && window.google?.maps?.places?.AutocompleteService) {
-      serviceRef.current = new window.google.maps.places.AutocompleteService();
-    }
-    return serviceRef.current;
-  };
 
   const fetchSuggestions = (input) => {
     if (!input || input.length < 3) { setSuggestions([]); setShowSug(false); return; }
     clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      const svc = getService();
-      if (!svc) return;
-      svc.getPlacePredictions(
-        { input, componentRestrictions: { country: ["nz", "au"] }, types: ["geocode", "establishment"] },
-        (predictions, status) => {
-          if (status === window.google.maps.places.PlacesServiceStatus.OK && predictions) {
-            setSuggestions(predictions.map(p => p.description));
-            setShowSug(true);
-            if (inputRef.current) {
-              const rect = inputRef.current.getBoundingClientRect();
-              setDropdownPos({ top: rect.bottom + window.scrollY + 4, left: rect.left, width: rect.width });
-            }
-          } else { setSuggestions([]); setShowSug(false); }
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const { AutocompleteSuggestion } = await window.google.maps.importLibrary("places");
+        const { suggestions: results } = await AutocompleteSuggestion.fetchAutocompleteSuggestions({
+          input,
+          includedRegionCodes: ["nz", "au"],
+        });
+        const texts = results.map(s => s.placePrediction.text.toString());
+        setSuggestions(texts);
+        setShowSug(texts.length > 0);
+        if (inputRef.current) {
+          const rect = inputRef.current.getBoundingClientRect();
+          setDropdownPos({ top: rect.bottom + window.scrollY + 4, left: rect.left, width: rect.width });
         }
-      );
+      } catch { setSuggestions([]); setShowSug(false); }
     }, 300);
   };
 
